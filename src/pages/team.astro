@@ -2,23 +2,26 @@
 import Layout from '../layouts/Layout.astro';
 
 const team = [
-	{ 
-		name: "Andrey Bachvarov", 
-		role: "Managing Partner", 
+	{
+		name: "Andrey Bachvarov",
+		role: "Investment Partner",
 		bio: "Successful serial entrepreneur with deep connections in the international VC community. Currently board member at Endeavor Bulgaria and BESCO. Companies established by Andrey include Anthill (exited to Sun Capital’s Exadel), EPIX.AI, Power Drone, BICA Services, and others.",
-		image: "/Andrey-Bachvarov.jpg"
+		image: "/Andrey-Bachvarov.jpg",
+		email: "a.bachvarov@artemis-cp.eu"
 	},
-	{ 
-		name: "Stefan Galabov", 
-		role: "Partner", 
-		bio: "Significant sector experience, technical & commercial know-how and network in the defense industry globally. Currently General Manager of TBS Ltd., a leading international trading company providing advanced technological solutions in the defense industry.",
-		image: "/Stefan-Galabov.jpg"
+	{
+		name: "Stefan Galabov",
+		role: "Operational & Industry Partner",
+		bio: "Significant sector experience, technical & commercial know-how and network in the defense industry globally. Currently General Manager of TBS Ltd., a leading international trading company providing advanced technological solutions in the defense industry. Member of BDIA and AFCEA International.",
+		image: "/Stefan-Galabov.jpg",
+		email: "s.galabov@artemis-cp.eu"
 	},
-	{ 
-		name: "Stanislav Georgiev", 
-		role: "Partner & CEO", 
+	{
+		name: "Stanislav Georgiev",
+		role: "Operational Partner",
 		bio: "Seasoned CEO with 20+ years in telecom, satellite and media, recognized for executing complex transformations, spin-offs and institutional-grade exits for PE investors. Previous roles include CEO of Bulsatcom, Director of A1 Broadcasting, CIO of A1 Telekom Serbia, as well as senior advisory roles with Arthur D. Little and Intelsat.",
-		image: "/Stanislav-Georgiev.jpg"
+		image: "/Stanislav-Georgiev.jpg",
+		email: "s.georgiev@artemis-cp.eu"
 	}
 ];
 ---
@@ -29,6 +32,19 @@ const team = [
 			<span class="eyebrow">Leadership</span>
 			<h1>Our <span class="outline">Team</span></h1>
 			<p>Operator-led leadership with deep technical and commercial expertise.</p>
+		</div>
+	</section>
+
+	<section class="philosophy">
+		<div class="container">
+			<div class="grid grid-cols-2">
+				<div>
+					<h2>Expertise and Integrity at the Core</h2>
+				</div>
+				<div>
+					<p>We believe that the strength of Artemis Capital Partners lies in our people. Our team's diverse backgrounds in finance, defence, and operational leadership enable us to deliver value to investors and portfolio companies alike.</p>
+				</div>
+			</div>
 		</div>
 	</section>
 
@@ -46,10 +62,19 @@ const team = [
 							<h3>{member.name}</h3>
 							<div class="divider"></div>
 							<p>{member.bio}</p>
+							<a href={`mailto:${member.email}`} class="member-email">{member.email}</a>
 						</div>
 					</div>
 				))}
 			</div>
+		</div>
+	</section>
+
+	<section class="team-cta">
+		<div class="container text-center">
+			<h2>Work With Our Team</h2>
+			<p>Connect with us to learn more about our platform and investment opportunities.</p>
+			<a href="mailto:info@artemis-cp.eu" class="btn">Contact Our Team</a>
 		</div>
 	</section>
 </Layout>
@@ -69,6 +94,73 @@ const team = [
 		opacity: 0.5;
 	}
 	.outline { color: transparent; -webkit-text-stroke: 1px var(--color-secondary); }
+
+	.philosophy {
+		padding: 6rem 0;
+		background: #0d121c;
+		border-bottom: 1px solid rgba(238, 234, 225, 0.05);
+	}
+
+	.philosophy h2 {
+		font-size: clamp(1.5rem, 3vw, 2.25rem);
+		line-height: 1.2;
+	}
+
+	.philosophy p {
+		font-size: 1.1rem;
+		opacity: 0.75;
+		line-height: 1.7;
+	}
+
+	.member-email {
+		display: inline-block;
+		margin-top: 1.5rem;
+		font-size: 0.75rem;
+		opacity: 0.4;
+		letter-spacing: 0.05em;
+		text-decoration: none;
+		transition: opacity 0.3s ease;
+		font-family: monospace;
+	}
+
+	.member-email:hover {
+		opacity: 0.8;
+	}
+
+	.team-cta {
+		padding: 6rem 0 8rem;
+		background: var(--color-primary);
+		border-top: 1px solid rgba(238, 234, 225, 0.05);
+	}
+
+	.team-cta h2 {
+		font-size: 2.5rem;
+		margin-bottom: 1.5rem;
+	}
+
+	.team-cta p {
+		font-size: 1.1rem;
+		opacity: 0.7;
+		margin-bottom: 3rem;
+	}
+
+	.btn {
+		display: inline-block;
+		padding: 1.25rem 3rem;
+		background-color: var(--color-secondary);
+		color: var(--color-primary);
+		font-weight: 600;
+		text-transform: uppercase;
+		letter-spacing: 0.1em;
+		font-size: 0.85rem;
+		transition: opacity 0.3s ease, transform 0.3s ease;
+		text-decoration: none;
+	}
+
+	.btn:hover {
+		opacity: 0.9;
+		transform: translateY(-2px);
+	}
 
 	.team-grid-section { padding: 4rem 0 8rem; }
 	

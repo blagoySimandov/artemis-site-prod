@@ -1,0 +1,261 @@
+---
+import Layout from '../layouts/Layout.astro';
+
+const valueProps = [
+	{
+		title: "Majority Ownership & Active Support",
+		desc: "We take majority positions and provide hands-on operational guidance, ensuring alignment and accountability across portfolio companies."
+	},
+	{
+		title: "Institutional Governance",
+		desc: "Our processes are guided by institutional standards, robust oversight, and transparent reporting — building confidence with investors and stakeholders."
+	},
+	{
+		title: "Sector Expertise",
+		desc: "Our team brings deep sector knowledge and a strong network across the European defence landscape, enabling informed decisions at every stage."
+	}
+];
+---
+
+<Layout title="Our Approach">
+	<section class="page-header">
+		<div class="container">
+			<span class="eyebrow">Our Approach</span>
+			<h1>Selective, Long-Term <span class="outline">Defence Investments</span></h1>
+			<p>Artemis Capital Partners pursues majority investments in established and transitioning defence companies, providing disciplined capital and hands-on operational support. Our approach is defined by active ownership, institutional governance, and a commitment to long-term value creation.</p>
+			<div class="header-actions">
+				<a href="/team" class="btn">Get Started</a>
+				<a href="/platform" class="btn btn-outline">Learn More</a>
+			</div>
+		</div>
+	</section>
+
+	<section class="gp-led">
+		<div class="container">
+			<div class="grid grid-cols-2">
+				<div>
+					<span class="eyebrow">The Framework</span>
+					<h2>A Disciplined, GP-Led Investment Platform</h2>
+				</div>
+				<div>
+					<p>Our selective approach focuses on identifying and acquiring mid-market companies in the European defence sector. We partner with management teams to drive operational excellence and sustainable growth.</p>
+					<p>Backed by experienced C-level executives and institutional investors, Artemis delivers value through rigorous due diligence, robust governance, and long-term partnership.</p>
+				</div>
+			</div>
+		</div>
+	</section>
+
+	<section class="value-creation">
+		<div class="container">
+			<div class="section-header">
+				<span class="eyebrow">Value Creation</span>
+				<h2>How We Create <span class="outline">Value</span></h2>
+			</div>
+			<div class="grid grid-cols-3 value-grid">
+				{valueProps.map((v, i) => (
+					<div class="value-card">
+						<span class="num">0{i + 1}</span>
+						<h3>{v.title}</h3>
+						<p>{v.desc}</p>
+					</div>
+				))}
+			</div>
+		</div>
+	</section>
+
+	<section class="cta">
+		<div class="container text-center">
+			<h2>Partner With Artemis Capital Partners</h2>
+			<p>Discover how our disciplined approach can help you achieve your investment goals in the defence sector.</p>
+			<a href="/team" class="btn">Contact Artemis</a>
+		</div>
+	</section>
+</Layout>
+
+<style>
+	.page-header {
+		padding-top: 12rem;
+		padding-bottom: 6rem;
+		background-color: var(--color-secondary);
+		color: var(--color-primary);
+	}
+
+	.page-header h1 {
+		font-size: clamp(2.5rem, 5vw, 4rem);
+		margin: 1.5rem 0 2rem;
+		line-height: 1.1;
+		max-width: 700px;
+	}
+
+	.page-header p {
+		max-width: 650px;
+		font-size: 1.1rem;
+		opacity: 0.8;
+		line-height: 1.6;
+		margin-bottom: 3rem;
+	}
+
+	.outline {
+		color: transparent;
+		-webkit-text-stroke: 1px var(--color-primary);
+	}
+
+	.eyebrow {
+		display: block;
+		text-transform: uppercase;
+		letter-spacing: 0.25em;
+		font-size: 0.8rem;
+		opacity: 0.6;
+		margin-bottom: 1rem;
+	}
+
+	.header-actions {
+		display: flex;
+		gap: 1.5rem;
+		align-items: center;
+	}
+
+	.btn {
+		display: inline-block;
+		padding: 1.25rem 3rem;
+		background-color: var(--color-primary);
+		color: var(--color-secondary);
+		font-weight: 600;
+		text-transform: uppercase;
+		letter-spacing: 0.1em;
+		font-size: 0.85rem;
+		transition: opacity 0.3s ease, transform 0.3s ease;
+	}
+
+	.btn:hover {
+		opacity: 0.85;
+		transform: translateY(-2px);
+	}
+
+	.btn-outline {
+		background-color: transparent;
+		color: var(--color-primary);
+		border: 1px solid var(--color-primary);
+	}
+
+	.gp-led {
+		padding: 8rem 0;
+		background: var(--color-primary);
+	}
+
+	.gp-led h2 {
+		font-size: clamp(1.75rem, 3vw, 2.5rem);
+		line-height: 1.2;
+		padding-right: 3rem;
+	}
+
+	.gp-led p {
+		font-size: 1.05rem;
+		opacity: 0.75;
+		line-height: 1.7;
+		margin-bottom: 1.5rem;
+	}
+
+	.value-creation {
+		padding: 8rem 0;
+		background: #0f1521;
+	}
+
+	.section-header {
+		margin-bottom: 5rem;
+	}
+
+	.value-creation h2 {
+		font-size: clamp(2rem, 4vw, 3rem);
+	}
+
+	.value-creation .outline {
+		color: transparent;
+		-webkit-text-stroke: 1px var(--color-secondary);
+	}
+
+	.value-grid {
+		gap: 1.5rem;
+	}
+
+	.value-card {
+		padding: 3rem 2.5rem;
+		background: rgba(24, 33, 50, 0.4);
+		border: 1px solid rgba(238, 234, 225, 0.05);
+		transition: all 0.4s ease;
+	}
+
+	.value-card:hover {
+		border-color: rgba(238, 234, 225, 0.15);
+		background: rgba(24, 33, 50, 0.7);
+		transform: translateY(-5px);
+	}
+
+	.num {
+		display: block;
+		font-family: monospace;
+		font-size: 0.8rem;
+		color: rgba(238, 234, 225, 0.2);
+		margin-bottom: 2rem;
+	}
+
+	.value-card h3 {
+		font-size: 1.2rem;
+		color: var(--color-secondary);
+		margin-bottom: 1.5rem;
+		line-height: 1.4;
+	}
+
+	.value-card p {
+		font-size: 0.95rem;
+		opacity: 0.6;
+		line-height: 1.7;
+	}
+
+	.cta {
+		padding: 8rem 0;
+		background: var(--color-primary);
+		border-top: 1px solid rgba(238, 234, 225, 0.05);
+	}
+
+	.cta h2 {
+		font-size: 2.5rem;
+		margin-bottom: 1.5rem;
+	}
+
+	.cta p {
+		font-size: 1.1rem;
+		opacity: 0.7;
+		margin-bottom: 3rem;
+		max-width: 600px;
+		margin-left: auto;
+		margin-right: auto;
+	}
+
+	.cta .btn {
+		background-color: var(--color-secondary);
+		color: var(--color-primary);
+	}
+
+	.text-center { text-align: center; }
+
+	@media (max-width: 1024px) {
+		.value-grid {
+			grid-template-columns: 1fr;
+		}
+	}
+
+	@media (max-width: 768px) {
+		.grid-cols-2 {
+			grid-template-columns: 1fr;
+			gap: 2rem;
+		}
+		.gp-led h2 {
+			padding-right: 0;
+		}
+		.header-actions {
+			flex-direction: column;
+			align-items: flex-start;
+		}
+	}
+</style>

@@ -12,10 +12,16 @@ import WhyArtemis from '../components/WhyArtemis.astro';
 		<div class="container">
 			<div class="grid grid-cols-2">
 				<div>
+					<span class="mission-eyebrow">A GP-Led Defence Investment Platform</span>
 					<h2 class="section-title">Luxembourg-based Private Equity</h2>
 				</div>
 				<div>
-					<p class="lead">Artemis Capital Partners invests in the defence and dual-use technology sector across the EU and NATO ecosystem. We target growth and scale-up companies positioned to benefit from the structural rearmament of Europe and the rapid expansion of defence industrial capacity.</p>
+					<p class="lead">Artemis Capital Partners invests in established, scaling and transitioning defence companies with disciplined capital, active ownership, and long-term value creation. We target mid-market companies across the EU and NATO ecosystem positioned to benefit from the structural rearmament of Europe.</p>
+					<div class="platform-links">
+						<a href="/platform" class="platform-link">Platform</a>
+						<a href="/investment-strategies" class="platform-link">Investment Focus</a>
+						<a href="/approach" class="platform-link">Approach</a>
+					</div>
 				</div>
 			</div>
 		</div>
@@ -75,7 +81,7 @@ import WhyArtemis from '../components/WhyArtemis.astro';
 	<section class="cta">
 		<div class="container text-center">
 			<h2>Strategic Investment in NATO Security</h2>
-			<p>Leveraging deep expertise in structuring, governance, and industrial matchmaking.</p>
+			<p>Connect with our team to learn more about our platform and investment opportunities.</p>
 			<div class="cta-btns">
 				<a href="/investment-strategies" class="btn">Our Strategies</a>
 				<a href="/team" class="btn btn-outline">Our Team</a>
@@ -91,9 +97,42 @@ import WhyArtemis from '../components/WhyArtemis.astro';
 		line-height: 1.1;
 	}
 
+	.mission-eyebrow {
+		display: block;
+		text-transform: uppercase;
+		letter-spacing: 0.2em;
+		font-size: 0.75rem;
+		opacity: 0.5;
+		margin-bottom: 1rem;
+	}
+
 	.lead {
 		font-size: 1.25rem;
 		opacity: 0.9;
+		margin-bottom: 2.5rem;
+	}
+
+	.platform-links {
+		display: flex;
+		gap: 2rem;
+		flex-wrap: wrap;
+	}
+
+	.platform-link {
+		font-size: 0.75rem;
+		text-transform: uppercase;
+		letter-spacing: 0.15em;
+		font-weight: 600;
+		color: var(--color-primary);
+		opacity: 0.5;
+		text-decoration: none;
+		border-bottom: 1px solid rgba(24, 33, 50, 0.3);
+		padding-bottom: 2px;
+		transition: opacity 0.3s ease;
+	}
+
+	.platform-link:hover {
+		opacity: 1;
 	}
 
 	.mission {

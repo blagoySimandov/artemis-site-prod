@@ -5,8 +5,36 @@ import Layout from '../layouts/Layout.astro';
 <Layout title="Investment Strategy">
 	<section class="page-header">
 		<div class="container">
-			<h1>Investment Strategy</h1>
-			<p>Strengthening NATO capabilities and Europe’s technological sovereignty.</p>
+			<span class="eyebrow">Investment Focus</span>
+			<h1>Disciplined Capital for Defence and Defence-Adjacent Sectors</h1>
+			<p>Strengthening NATO capabilities and Europe’s technological sovereignty through investments in profitable, revenue-generating companies or those with secured commitments.</p>
+		</div>
+	</section>
+
+	<section class="criteria">
+		<div class="container">
+			<div class="section-header">
+				<span class="eyebrow">Investment Criteria</span>
+				<h2>What We <span class="outline-dark">Look For</span></h2>
+			</div>
+			<div class="grid grid-cols-2 criteria-grid">
+				<div class="criteria-item">
+					<h4>Defence Sector Focus</h4>
+					<p>Investments in companies operating in core defence and defence-adjacent markets across Europe, including cybersecurity, modern-warfare, spacecom, and adjacent sectors.</p>
+				</div>
+				<div class="criteria-item">
+					<h4>Established Operations</h4>
+					<p>Targets profitable businesses with secured government or commercial contracts — revenue-generating companies or those with secured commitments.</p>
+				</div>
+				<div class="criteria-item">
+					<h4>Active Ownership</h4>
+					<p>Majority positions with hands-on operational support from experienced C-level executives, ensuring alignment and accountability at every stage.</p>
+				</div>
+				<div class="criteria-item">
+					<h4>Institutional Governance</h4>
+					<p>Applying institutional standards, transparency, and best practices to portfolio management — building credibility with stakeholders and investors.</p>
+				</div>
+			</div>
 		</div>
 	</section>
 
@@ -97,6 +125,65 @@ import Layout from '../layouts/Layout.astro';
 
 <style>
 	.page-header { padding-top: 12rem; padding-bottom: 6rem; background: var(--color-secondary); color: var(--color-primary); }
+
+	.page-header .eyebrow {
+		display: block;
+		text-transform: uppercase;
+		letter-spacing: 0.25em;
+		font-size: 0.8rem;
+		opacity: 0.6;
+		margin-bottom: 1rem;
+	}
+
+	.page-header h1 {
+		font-size: clamp(2rem, 4vw, 3rem);
+		line-height: 1.1;
+		margin: 1rem 0 2rem;
+		max-width: 700px;
+	}
+
+	.criteria {
+		padding: 8rem 0;
+		background: var(--color-primary);
+	}
+
+	.criteria .section-header { margin-bottom: 4rem; }
+
+	.criteria h2 {
+		font-size: clamp(1.75rem, 3vw, 2.5rem);
+		margin-top: 0.5rem;
+	}
+
+	.outline-dark {
+		color: transparent;
+		-webkit-text-stroke: 1px var(--color-secondary);
+	}
+
+	.criteria-grid { gap: 1.5rem; }
+
+	.criteria-item {
+		padding: 2.5rem;
+		border: 1px solid rgba(238, 234, 225, 0.08);
+		background: rgba(24, 33, 50, 0.3);
+		transition: border-color 0.3s ease;
+	}
+
+	.criteria-item:hover {
+		border-color: rgba(238, 234, 225, 0.2);
+	}
+
+	.criteria-item h4 {
+		color: var(--color-secondary);
+		margin-bottom: 1rem;
+		font-size: 1rem;
+	}
+
+	.criteria-item p {
+		font-size: 0.9rem;
+		opacity: 0.65;
+		line-height: 1.6;
+	}
+
 	.strategy-details { padding: 10rem 0; }
 	
 	.params h2, .sectors h2 { margin-bottom: 3rem; }

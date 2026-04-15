@@ -1,0 +1,91 @@
+---
+---
+<footer>
+	<div class="container">
+		<div class="footer-grid">
+			<div class="footer-brand">
+				<img src="/logo_wh.png" alt="Artemis Capital Partners" class="footer-logo" />
+				<p>Driving the future of European security and defense technology through strategic investments in drones, cybersecurity, and space systems.</p>
+			</div>
+			<div class="footer-links">
+				<h4>Quick Links</h4>
+				<a href="/investment-strategies">Investment Strategies</a>
+				<a href="/team">Our Team</a>
+				<a href="/advisors">Advisors</a>
+				<a href="/careers">Careers</a>
+			</div>
+			<div class="footer-contact">
+				<h4>Contact</h4>
+				<p>Artemis Capital Partners<br/>Europe / EU Headquarters</p>
+				<p>info@artemiscapital.partners</p>
+			</div>
+		</div>
+		<div class="footer-bottom">
+			<p>&copy; {new Date().getFullYear()} Artemis Capital Partners. All rights reserved.</p>
+		</div>
+	</div>
+</footer>
+
+<style>
+	footer {
+		background-color: #0d121c; /* Slightly darker than primary */
+		padding: 4rem 0 2rem;
+		border-top: 1px solid rgba(238, 234, 225, 0.05);
+	}
+
+	.footer-grid {
+		display: grid;
+		grid-template-columns: 2fr 1fr 1fr;
+		gap: 4rem;
+		margin-bottom: 4rem;
+	}
+
+	.footer-logo {
+		height: 35px;
+		margin-bottom: 1.5rem;
+	}
+
+	.footer-brand p {
+		max-width: 400px;
+		font-size: 0.9rem;
+		opacity: 0.7;
+	}
+
+	h4 {
+		font-size: 0.9rem;
+		margin-bottom: 1.5rem;
+		color: rgba(238, 234, 225, 0.5);
+	}
+
+	.footer-links {
+		display: flex;
+		flex-direction: column;
+		gap: 0.75rem;
+	}
+
+	.footer-links a {
+		font-size: 0.9rem;
+		opacity: 0.8;
+	}
+
+	.footer-contact p {
+		font-size: 0.9rem;
+		opacity: 0.8;
+		margin-bottom: 0.5rem;
+	}
+
+	.footer-bottom {
+		padding-top: 2rem;
+		border-top: 1px solid rgba(238, 234, 225, 0.05);
+		text-align: center;
+		font-size: 0.8rem;
+		opacity: 0.5;
+	}
+
+	@media (max-width: 768px) {
+		.footer-grid {
+			grid-template-columns: 1fr;
+			gap: 2.5rem;
+		}
+	}
+</style>

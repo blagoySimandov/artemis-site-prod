@@ -1,0 +1,53 @@
+---
+const stats = [
+	{ label: "Capital Committed", value: "€500M+" },
+	{ label: "Portfolio Companies", value: "24" },
+	{ label: "Defense Partners", value: "15+" },
+	{ label: "EU Focus", value: "100%" }
+];
+---
+
+<section class="stats">
+	<div class="container">
+		<div class="grid grid-cols-4">
+			{stats.map(stat => (
+				<div class="stat-item text-center">
+					<div class="stat-value">{stat.value}</div>
+					<div class="stat-label">{stat.label}</div>
+				</div>
+			))}
+		</div>
+	</div>
+</section>
+
+<style>
+	.stats {
+		padding: 4rem 0;
+		border-top: 1px solid rgba(238, 234, 225, 0.05);
+		border-bottom: 1px solid rgba(238, 234, 225, 0.05);
+	}
+
+	.stat-value {
+		font-size: 3rem;
+		font-weight: 700;
+		margin-bottom: 0.5rem;
+		color: var(--color-secondary);
+	}
+
+	.stat-label {
+		font-size: 0.8rem;
+		text-transform: uppercase;
+		letter-spacing: 0.1em;
+		opacity: 0.5;
+	}
+
+	.text-center {
+		text-align: center;
+	}
+
+	@media (max-width: 768px) {
+		.stat-value {
+			font-size: 2.5rem;
+		}
+	}
+</style>

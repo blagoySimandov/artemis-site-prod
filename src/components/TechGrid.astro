@@ -1,0 +1,101 @@
+---
+const techs = [
+	{
+		title: "Autonomous Systems",
+		desc: "Investing in next-generation UAVs, UGVs, and autonomous maritime platforms for multi-domain awareness.",
+		icon: "drone"
+	},
+	{
+		title: "Cyber Resilience",
+		desc: "Protecting critical infrastructure and military networks from advanced persistent threats and cognitive warfare.",
+		icon: "shield"
+	},
+	{
+		title: "Space & Satellite",
+		desc: "Low-earth orbit constellations and secure satellite communications for persistent global surveillance.",
+		icon: "satellite"
+	},
+	{
+		title: "AI & Signal Intelligence",
+		desc: "Edge computing and AI-driven analysis for real-time battlefield intelligence and decision superiority.",
+		icon: "cpu"
+	}
+];
+---
+
+<section class="tech-grid">
+	<div class="container">
+		<div class="grid grid-cols-2">
+			{techs.map(tech => (
+				<div class="tech-card">
+					<div class="tech-icon">
+						<!-- Simple geometric SVG icons -->
+						{tech.icon === 'drone' && (
+							<svg width="40" height="40" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+								<rect x="18" y="2" width="4" height="36" fill="currentColor" fill-opacity="0.2"/>
+								<rect x="2" y="18" width="36" height="4" fill="currentColor" fill-opacity="0.2"/>
+								<circle cx="20" cy="20" r="8" stroke="currentColor" stroke-width="2"/>
+							</svg>
+						)}
+						{tech.icon === 'shield' && (
+							<svg width="40" height="40" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+								<path d="M20 4L32 9V19C32 26.5 27 33.5 20 36C13 33.5 8 26.5 8 19V9L20 4Z" stroke="currentColor" stroke-width="2"/>
+							</svg>
+						)}
+						{tech.icon === 'satellite' && (
+							<svg width="40" height="40" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+								<circle cx="20" cy="20" r="14" stroke="currentColor" stroke-width="1" stroke-dasharray="4 4"/>
+								<rect x="15" y="15" width="10" height="10" stroke="currentColor" stroke-width="2"/>
+							</svg>
+						)}
+						{tech.icon === 'cpu' && (
+							<svg width="40" height="40" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+								<rect x="10" y="10" width="20" height="20" stroke="currentColor" stroke-width="2"/>
+								<path d="M20 6V10M20 30V34M6 20H10M30 20H34" stroke="currentColor" stroke-width="2"/>
+							</svg>
+						)}
+					</div>
+					<h3>{tech.title}</h3>
+					<p>{tech.desc}</p>
+				</div>
+			))}
+		</div>
+	</div>
+</section>
+
+<style>
+	.tech-grid {
+		background-color: #121926;
+	}
+
+	.tech-card {
+		padding: 4rem;
+		border: 1px solid rgba(238, 234, 225, 0.05);
+		transition: background-color 0.3s ease;
+	}
+
+	.tech-card:hover {
+		background-color: rgba(238, 234, 225, 0.02);
+	}
+
+	.tech-icon {
+		margin-bottom: 2rem;
+		color: var(--color-secondary);
+	}
+
+	h3 {
+		font-size: 1.5rem;
+		margin-bottom: 1rem;
+	}
+
+	.tech-card p {
+		opacity: 0.6;
+		max-width: 320px;
+	}
+
+	@media (max-width: 768px) {
+		.tech-card {
+			padding: 2.5rem;
+		}
+	}
+</style>

@@ -1,0 +1,79 @@
+---
+import Layout from '../layouts/Layout.astro';
+
+const team = [
+	{ name: "Alexander Volkov", role: "Managing Partner", bio: "Former defense analyst with 20 years of experience in aerospace and venture capital." },
+	{ name: "Elena Schmidt", role: "Partner, Technology", bio: "Expert in cybersecurity and autonomous systems. Previously led R&D at a major EU defense contractor." },
+	{ name: "Stanislav Petrov", role: "Investment Director", bio: "Specializes in dual-use technologies and satellite communications." },
+	{ name: "Marcus Thorne", role: "Venture Partner", bio: "Focuses on AI and signal intelligence for modern security applications." }
+];
+---
+
+<Layout title="Our Team">
+	<section class="page-header">
+		<div class="container">
+			<h1>Our Team</h1>
+			<p>A multi-disciplinary group of defense experts, technologists, and investors.</p>
+		</div>
+	</section>
+
+	<section class="team-grid">
+		<div class="container">
+			<div class="grid grid-cols-2">
+				{team.map(member => (
+					<div class="member-card">
+						<div class="member-info">
+							<h3>{member.name}</h3>
+							<span class="role">{member.role}</span>
+							<p>{member.bio}</p>
+						</div>
+					</div>
+				))}
+			</div>
+		</div>
+	</section>
+</Layout>
+
+<style>
+	.page-header {
+		padding-top: 10rem;
+		padding-bottom: 4rem;
+		border-bottom: 1px solid rgba(238, 234, 225, 0.1);
+	}
+
+	.page-header h1 {
+		font-size: 3.5rem;
+		margin-bottom: 1rem;
+	}
+
+	.page-header p {
+		font-size: 1.25rem;
+		opacity: 0.7;
+		max-width: 600px;
+	}
+
+	.member-card {
+		padding: 3rem;
+		border: 1px solid rgba(238, 234, 225, 0.05);
+		background-color: rgba(238, 234, 225, 0.02);
+	}
+
+	.role {
+		display: block;
+		font-size: 0.9rem;
+		text-transform: uppercase;
+		letter-spacing: 0.1em;
+		color: rgba(238, 234, 225, 0.5);
+		margin-bottom: 1.5rem;
+	}
+
+	h3 {
+		font-size: 1.5rem;
+		margin-bottom: 0.5rem;
+	}
+
+	.member-card p {
+		opacity: 0.8;
+		font-size: 1rem;
+	}
+</style>

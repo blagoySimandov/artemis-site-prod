@@ -1,0 +1,267 @@
+---
+---
+<header>
+	<nav class="container">
+		<a href="/" class="logo">
+			<img src="/logo_wh.png" alt="Artemis Capital Partners" />
+		</a>
+		
+		<!-- Mobile Menu Toggle -->
+		<button id="menu-toggle" class="menu-toggle" aria-label="Toggle Menu">
+			<span class="hamburger"></span>
+		</button>
+
+		<div id="nav-menu" class="nav-links">
+			<div class="dropdown">
+				<button class="dropbtn">
+					About Us 
+					<svg width="12" height="8" viewBox="0 0 10 6" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M1 1L5 5L9 1" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+				</button>
+				<div class="dropdown-content">
+					<a href="/about">About Us</a>
+					<a href="/team">Team</a>
+					<a href="/advisors">Senior Advisors</a>
+					<a href="/sustainability">Sustainability</a>
+					<a href="/careers">Careers</a>
+				</div>
+			</div>
+
+			<div class="dropdown">
+				<button class="dropbtn">
+					Investment Strategies 
+					<svg width="12" height="8" viewBox="0 0 10 6" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M1 1L5 5L9 1" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+				</button>
+				<div class="dropdown-content">
+					<a href="/investment-strategies">Investment Strategies</a>
+					<a href="/infra">Infra</a>
+					<a href="/growth">Growth</a>
+					<a href="/partnerships">Partnerships</a>
+				</div>
+			</div>
+
+			<a href="/news" class="nav-item">News and Insights</a>
+		</div>
+	</nav>
+</header>
+
+<script>
+	const menuToggle = document.getElementById('menu-toggle');
+	const navMenu = document.getElementById('nav-menu');
+
+	menuToggle?.addEventListener('click', () => {
+		menuToggle.classList.toggle('active');
+		navMenu?.classList.toggle('active');
+		document.body.classList.toggle('menu-open');
+	});
+
+	// Handle dropdowns on mobile (click instead of hover)
+	const dropdowns = document.querySelectorAll('.dropdown');
+	dropdowns.forEach(dropdown => {
+		const btn = dropdown.querySelector('.dropbtn');
+		btn?.addEventListener('click', (e) => {
+			if (window.innerWidth <= 768) {
+				e.preventDefault();
+				dropdown.classList.toggle('active');
+			}
+		});
+	});
+</script>
+
+<style>
+	header {
+		position: fixed;
+		top: 0;
+		left: 0;
+		width: 100%;
+		z-index: 1000;
+		background: rgba(24, 33, 50, 0.95);
+		backdrop-filter: blur(12px);
+		border-bottom: 1px solid rgba(238, 234, 225, 0.1);
+	}
+
+	nav {
+		height: 80px;
+		display: flex;
+		align-items: center;
+		justify-content: space-between;
+	}
+
+	.logo img {
+		height: 35px;
+		width: auto;
+	}
+
+	.nav-links {
+		display: flex;
+		gap: 2.5rem;
+		align-items: center;
+	}
+
+	.nav-item, .dropbtn {
+		font-size: 0.8rem;
+		font-weight: 500;
+		text-transform: uppercase;
+		letter-spacing: 0.15em;
+		color: var(--color-secondary);
+		background: none;
+		border: none;
+		padding: 0;
+		cursor: pointer;
+		display: flex;
+		align-items: center;
+		gap: 0.5rem;
+		font-family: var(--font-main);
+		transition: opacity 0.3s ease;
+	}
+
+	.nav-item:hover, .dropbtn:hover {
+		opacity: 0.7;
+	}
+
+	/* Desktop Dropdown Logic */
+	@media (min-width: 769px) {
+		.dropdown {
+			position: relative;
+			display: inline-block;
+		}
+
+		.dropdown-content {
+			display: none;
+			position: absolute;
+			top: 100%;
+			left: 0;
+			background-color: #1a263d;
+			min-width: 240px;
+			box-shadow: 0px 15px 30px rgba(0,0,0,0.4);
+			z-index: 1;
+			border: 1px solid rgba(238, 234, 225, 0.1);
+			padding: 10px 0;
+			margin-top: 10px;
+		}
+
+		.dropdown::after {
+			content: "";
+			position: absolute;
+			top: 100%;
+			left: 0;
+			width: 100%;
+			height: 20px;
+		}
+
+		.dropdown:hover .dropdown-content {
+			display: block;
+		}
+
+		.dropdown-content a {
+			color: var(--color-secondary);
+			padding: 0.8rem 1.5rem;
+			text-decoration: none;
+			display: block;
+			font-size: 0.7rem;
+			text-transform: uppercase;
+			letter-spacing: 0.1em;
+			transition: background 0.2s ease;
+		}
+
+		.dropdown-content a:hover {
+			background: rgba(238, 234, 225, 0.05);
+		}
+	}
+
+	/* Mobile styles */
+	@media (max-width: 768px) {
+		.menu-toggle {
+			display: block;
+			width: 30px;
+			height: 20px;
+			position: relative;
+			background: none;
+			border: none;
+			cursor: pointer;
+			z-index: 1100;
+		}
+
+		.hamburger, .hamburger::before, .hamburger::after {
+			content: '';
+			display: block;
+			width: 30px;
+			height: 2px;
+			background: var(--color-secondary);
+			position: absolute;
+			transition: all 0.3s ease;
+		}
+
+		.hamburger { top: 9px; }
+		.hamburger::before { top: -8px; }
+		.hamburger::after { top: 8px; }
+
+		.menu-toggle.active .hamburger { background: transparent; }
+		.menu-toggle.active .hamburger::before { transform: rotate(45deg); top: 0; }
+		.menu-toggle.active .hamburger::after { transform: rotate(-45deg); top: 0; }
+
+		.nav-links {
+			position: fixed;
+			top: 80px; /* Below header */
+			left: 0;
+			width: 100%;
+			height: calc(100vh - 80px);
+			background: var(--color-primary);
+			flex-direction: column;
+			justify-content: flex-start;
+			align-items: flex-start;
+			padding: 2rem;
+			transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+			transform: translateX(100%);
+			overflow-y: auto;
+		}
+
+		.nav-links.active {
+			transform: translateX(0);
+		}
+
+		.nav-item, .dropbtn {
+			font-size: 1.1rem;
+			width: 100%;
+			justify-content: space-between;
+			padding: 1.5rem 0;
+			border-bottom: 1px solid rgba(238, 234, 225, 0.1);
+			text-align: left;
+			letter-spacing: 0.1em;
+		}
+
+		.dropdown {
+			width: 100%;
+		}
+
+		.dropdown-content {
+			display: none;
+			width: 100%;
+			padding: 0.5rem 0 1.5rem 1.5rem;
+		}
+
+		.dropdown.active .dropdown-content {
+			display: block;
+		}
+
+		.dropdown-content a {
+			padding: 1rem 0;
+			font-size: 0.9rem;
+			text-transform: uppercase;
+			letter-spacing: 0.1em;
+			color: rgba(238, 234, 225, 0.7);
+			border-bottom: 1px solid rgba(238, 234, 225, 0.05);
+			display: block;
+			width: 100%;
+		}
+
+		.dropdown.active .dropbtn svg {
+			transform: rotate(180deg);
+		}
+	}
+
+	@media (min-width: 769px) {
+		.menu-toggle {
+			display: none;
+		}
+	}
+</style>

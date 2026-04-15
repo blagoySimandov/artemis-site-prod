@@ -1,0 +1,155 @@
+---
+---
+<section class="hero">
+	<div class="hero-bg">
+		<div class="grid-overlay"></div>
+		<div class="radar"></div>
+	</div>
+	<div class="container">
+		<div class="hero-content">
+			<span class="eyebrow">Defense Technology Venture Capital</span>
+			<h1>Securing the <br/> <span class="text-highlight">Future of Europe</span></h1>
+			<p>Strategic investments in Drones, Cybersecurity, and Space Systems.</p>
+			<div class="hero-actions">
+				<a href="/investment-strategies" class="btn">View Strategies</a>
+				<a href="#mission" class="scroll-down">
+					<span>Learn More</span>
+					<svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+						<path d="M10 4V16M10 16L4 10M10 16L16 10" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+					</svg>
+				</a>
+			</div>
+		</div>
+	</div>
+</section>
+
+<style>
+	.hero {
+		height: 100vh;
+		display: flex;
+		align-items: center;
+		position: relative;
+		overflow: hidden;
+		background: radial-gradient(circle at 50% 50%, #1e2b42 0%, #182132 100%);
+	}
+
+	.hero-bg {
+		position: absolute;
+		inset: 0;
+		z-index: 0;
+	}
+
+	.grid-overlay {
+		position: absolute;
+		inset: 0;
+		background-image: 
+			linear-gradient(rgba(238, 234, 225, 0.05) 1px, transparent 1px),
+			linear-gradient(90deg, rgba(238, 234, 225, 0.05) 1px, transparent 1px);
+		background-size: 50px 50px;
+		mask-image: radial-gradient(circle at 50% 50%, black, transparent 80%);
+	}
+
+	.radar {
+		position: absolute;
+		top: 50%;
+		left: 50%;
+		transform: translate(-50%, -50%);
+		width: 800px;
+		height: 800px;
+		border: 1px solid rgba(238, 234, 225, 0.1);
+		border-radius: 50%;
+		pointer-events: none;
+	}
+
+	.radar::before {
+		content: '';
+		position: absolute;
+		inset: -1px;
+		border-radius: 50%;
+		background: conic-gradient(from 0deg, transparent 0deg, rgba(238, 234, 225, 0.1) 90deg, transparent 90deg);
+		animation: rotate 10s linear infinite;
+	}
+
+	@keyframes rotate {
+		from { transform: rotate(0deg); }
+		to { transform: rotate(360deg); }
+	}
+
+	.hero-content {
+		position: relative;
+		z-index: 1;
+		max-width: 800px;
+	}
+
+	.eyebrow {
+		display: block;
+		font-size: 0.9rem;
+		text-transform: uppercase;
+		letter-spacing: 0.2em;
+		margin-bottom: 1.5rem;
+		color: rgba(238, 234, 225, 0.6);
+	}
+
+	h1 {
+		font-size: clamp(3rem, 8vw, 5.5rem);
+		line-height: 0.95;
+		margin-bottom: 2rem;
+	}
+
+	.text-highlight {
+		color: transparent;
+		-webkit-text-stroke: 1px var(--color-secondary);
+	}
+
+	p {
+		font-size: 1.25rem;
+		max-width: 500px;
+		margin-bottom: 3rem;
+		opacity: 0.8;
+	}
+
+	.hero-actions {
+		display: flex;
+		align-items: center;
+		gap: 3rem;
+	}
+
+	.btn {
+		display: inline-block;
+		padding: 1.25rem 3rem;
+		background-color: var(--color-secondary);
+		color: var(--color-primary);
+		font-weight: 600;
+		text-transform: uppercase;
+		letter-spacing: 0.1em;
+		font-size: 0.85rem;
+	}
+
+	.scroll-down {
+		display: flex;
+		align-items: center;
+		gap: 1rem;
+		font-size: 0.8rem;
+		text-transform: uppercase;
+		letter-spacing: 0.1em;
+		opacity: 0.6;
+	}
+
+	.scroll-down svg {
+		animation: bounce 2s infinite;
+	}
+
+	@keyframes bounce {
+		0%, 20%, 50%, 80%, 100% { transform: translateY(0); }
+		40% { transform: translateY(-5px); }
+		60% { transform: translateY(-3px); }
+	}
+
+	@media (max-width: 768px) {
+		.hero-actions {
+			flex-direction: column;
+			align-items: flex-start;
+			gap: 2rem;
+		}
+	}
+</style>

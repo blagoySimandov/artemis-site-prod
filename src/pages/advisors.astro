@@ -1,0 +1,83 @@
+---
+import Layout from '../layouts/Layout.astro';
+
+const advisors = [
+	{ name: "Gen. (Ret.) Jean-Luc Picard", role: "Strategic Advisor", focus: "Military Strategy & Logistics" },
+	{ name: "Dr. Sarah Connor", role: "Technical Advisor", focus: "Autonomous Systems & Robotics" },
+	{ name: "Ambassador Kosh", role: "Diplomatic Advisor", focus: "EU Policy & International Relations" }
+];
+---
+
+<Layout title="Advisors">
+	<section class="page-header">
+		<div class="container">
+			<h1>Strategic Advisors</h1>
+			<p>Guidance from world-class leaders in military, technology, and policy.</p>
+		</div>
+	</section>
+
+	<section class="advisors-list">
+		<div class="container">
+			<div class="grid grid-cols-1">
+				{advisors.map(advisor => (
+					<div class="advisor-item">
+						<div class="advisor-meta">
+							<h3>{advisor.name}</h3>
+							<span class="role">{advisor.role}</span>
+						</div>
+						<div class="advisor-focus">
+							<span class="focus-label">Focus</span>
+							<p>{advisor.focus}</p>
+						</div>
+					</div>
+				))}
+			</div>
+		</div>
+	</section>
+</Layout>
+
+<style>
+	.page-header {
+		padding-top: 10rem;
+		padding-bottom: 4rem;
+	}
+
+	.advisor-item {
+		display: flex;
+		justify-content: space-between;
+		padding: 3rem 0;
+		border-bottom: 1px solid rgba(238, 234, 225, 0.1);
+	}
+
+	.role {
+		display: block;
+		font-size: 0.8rem;
+		text-transform: uppercase;
+		letter-spacing: 0.1em;
+		opacity: 0.5;
+		margin-top: 0.5rem;
+	}
+
+	.focus-label {
+		display: block;
+		font-size: 0.7rem;
+		text-transform: uppercase;
+		letter-spacing: 0.1em;
+		opacity: 0.3;
+		margin-bottom: 0.5rem;
+	}
+
+	.advisor-focus {
+		text-align: right;
+	}
+
+	@media (max-width: 768px) {
+		.advisor-item {
+			flex-direction: column;
+			gap: 1.5rem;
+		}
+		.advisor-focus {
+			text-align: left;
+		}
+	}
+</style>

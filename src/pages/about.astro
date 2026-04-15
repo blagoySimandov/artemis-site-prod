@@ -1,0 +1,40 @@
+---
+import Layout from '../layouts/Layout.astro';
+---
+
+<Layout title="About Us">
+	<section class="page-header">
+		<div class="container">
+			<h1>About Artemis</h1>
+			<p>Strategic capital for the next generation of European defense and security.</p>
+		</div>
+	</section>
+
+	<section class="content">
+		<div class="container">
+			<div class="grid grid-cols-2">
+				<div>
+					<h2>Our Mission</h2>
+					<p>Artemis Capital Partners was founded to bridge the gap between breakthrough technology and European security needs. We provide more than just capital; we provide the strategic network and industry expertise required to scale in the complex defense landscape.</p>
+				</div>
+				<div>
+					<h2>Why Now?</h2>
+					<p>The geopolitical landscape of Europe is changing rapidly. The need for sovereign, state-of-the-art defense capabilities has never been greater. We are committed to supporting the founders who are building the tools to protect our future.</p>
+				</div>
+			</div>
+		</div>
+	</section>
+</Layout>
+
+<style>
+	.page-header {
+		padding-top: 12rem;
+		padding-bottom: 6rem;
+		background-color: var(--color-secondary);
+		color: var(--color-primary);
+	}
+	h1 { font-size: 4rem; margin-bottom: 1rem; }
+	.content { padding: 8rem 0; }
+	h2 { margin-bottom: 1.5rem; }
+	p { opacity: 0.8; font-size: 1.1rem; }
+</style>

@@ -1,11 +1,135 @@
 ---
-import Welcome from '../components/Welcome.astro';
 import Layout from '../layouts/Layout.astro';
-
-// Welcome to Astro! Wondering what to do next? Check out the Astro documentation at https://docs.astro.build
-// Don't want to use any of this? Delete everything in this file, the `assets`, `components`, and `layouts` directories, and start fresh.
+import Hero from '../components/Hero.astro';
+import Stats from '../components/Stats.astro';
+import TechGrid from '../components/TechGrid.astro';
 ---
 
-<Layout>
-	<Welcome />
+<Layout title="European Defense & Security VC">
+	<Hero />
+	<section class="mission">
+		<div class="container">
+			<div class="grid grid-cols-2">
+				<div>
+					<h2 class="section-title">Safeguarding the European Frontier</h2>
+				</div>
+				<div>
+					<p class="lead">Artemis Capital Partners is a leading European investment firm dedicated to the advancement of defense and security technology. We partner with visionary founders developing dual-use technologies that protect democracies and enhance regional stability.</p>
+				</div>
+			</div>
+		</div>
+	</section>
+	
+	<TechGrid />
+	
+	<Stats />
+
+	<section class="partners">
+		<div class="container text-center">
+			<h2 class="section-title-center">Strategic Partners</h2>
+			<div class="partners-grid">
+				<div class="partner-logo">
+					<span class="partner-name">TBS.bg</span>
+				</div>
+				<!-- Add more partners here -->
+			</div>
+		</div>
+	</section>
+
+	<section class="cta">
+		<div class="container text-center">
+			<h2>Join the Next Generation of Defense Tech</h2>
+			<p>We are always looking for visionary entrepreneurs and talented professionals.</p>
+			<div class="cta-btns">
+				<a href="/investment-strategies" class="btn">Our Strategies</a>
+				<a href="/careers" class="btn btn-outline">Join Us</a>
+			</div>
+		</div>
+	</section>
 </Layout>
+
+<style>
+	.section-title {
+		font-size: 2.5rem;
+		max-width: 400px;
+		line-height: 1.1;
+	}
+
+	.lead {
+		font-size: 1.25rem;
+		opacity: 0.9;
+	}
+
+	.mission {
+		background-color: var(--color-secondary);
+		color: var(--color-primary);
+	}
+
+	.text-center {
+		text-align: center;
+	}
+
+	.section-title-center {
+		font-size: 2rem;
+		margin-bottom: 4rem;
+		text-align: center;
+	}
+
+	.partners {
+		padding: 6rem 0;
+		background-color: var(--color-primary);
+	}
+
+	.partners-grid {
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		gap: 4rem;
+		opacity: 0.6;
+	}
+
+	.partner-name {
+		font-size: 2rem;
+		font-weight: 700;
+		letter-spacing: 0.2em;
+	}
+
+	.cta h2 {
+		font-size: 2.5rem;
+		margin-bottom: 1.5rem;
+	}
+
+	.cta p {
+		font-size: 1.1rem;
+		margin-bottom: 3rem;
+		opacity: 0.8;
+	}
+
+	.cta-btns {
+		display: flex;
+		gap: 1rem;
+		justify-content: center;
+	}
+
+	.btn {
+		display: inline-block;
+		padding: 1rem 2.5rem;
+		background-color: var(--color-secondary);
+		color: var(--color-primary);
+		font-weight: 600;
+		text-transform: uppercase;
+		letter-spacing: 0.1em;
+		font-size: 0.8rem;
+	}
+
+	.btn-outline {
+		background-color: transparent;
+		color: var(--color-secondary);
+		border: 1px solid var(--color-secondary);
+	}
+
+	.btn:hover {
+		opacity: 1;
+		transform: translateY(-2px);
+	}
+</style>

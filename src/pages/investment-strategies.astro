@@ -1,0 +1,131 @@
+---
+import Layout from '../layouts/Layout.astro';
+---
+
+<Layout title="Investment Strategies">
+	<section class="page-header">
+		<div class="container">
+			<h1>Investment Strategies</h1>
+			<p>Focusing on high-impact technologies that redefine modern security.</p>
+		</div>
+	</section>
+
+	<section class="strategies">
+		<div class="container">
+			<div class="strategy-section">
+				<div class="grid grid-cols-2">
+					<div class="strategy-content">
+						<h2>Dual-Use Innovation</h2>
+						<p>We target technologies with both civilian and defense applications, ensuring commercial scalability and strategic relevance. Our focus is on founders who understand the complexities of the European defense market.</p>
+						<ul class="strategy-list">
+							<li>Autonomous Systems & Swarm Intelligence</li>
+							<li>Secure Communications & Cryptography</li>
+							<li>Remote Sensing & Earth Observation</li>
+							<li>Directed Energy & Electronic Warfare</li>
+						</ul>
+					</div>
+					<div class="strategy-image">
+						<div class="placeholder-graphic">
+							<div class="pulse"></div>
+						</div>
+					</div>
+				</div>
+			</div>
+
+			<div class="strategy-section alt">
+				<div class="grid grid-cols-2">
+					<div class="strategy-image">
+						<div class="placeholder-graphic">
+							<div class="lines"></div>
+						</div>
+					</div>
+					<div class="strategy-content">
+						<h2>Sovereign Capability</h2>
+						<p>Strengthening Europe's strategic autonomy by investing in domestic supply chains and critical technologies. We provide the capital and expertise needed to scale across EU member states.</p>
+						<ul class="strategy-list">
+							<li>Supply Chain Resilience</li>
+							<li>Advanced Materials & Manufacturing</li>
+							<li>Micro-electronics & Semiconductors</li>
+							<li>Quantum Computing for Defense</li>
+						</ul>
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
+</Layout>
+
+<style>
+	.page-header {
+		padding-top: 10rem;
+		padding-bottom: 6rem;
+		background-color: var(--color-secondary);
+		color: var(--color-primary);
+	}
+
+	.strategy-section {
+		padding: 8rem 0;
+		border-bottom: 1px solid rgba(238, 234, 225, 0.05);
+	}
+
+	.strategy-content h2 {
+		font-size: 2.5rem;
+		margin-bottom: 2rem;
+	}
+
+	.strategy-content p {
+		font-size: 1.1rem;
+		margin-bottom: 2rem;
+		opacity: 0.8;
+	}
+
+	.strategy-list {
+		list-style: none;
+		padding: 0;
+	}
+
+	.strategy-list li {
+		padding: 0.75rem 0;
+		border-top: 1px solid rgba(238, 234, 225, 0.1);
+		font-weight: 500;
+		font-size: 0.9rem;
+		text-transform: uppercase;
+		letter-spacing: 0.05em;
+	}
+
+	.placeholder-graphic {
+		height: 400px;
+		background-color: rgba(238, 234, 225, 0.02);
+		border: 1px solid rgba(238, 234, 225, 0.05);
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		position: relative;
+		overflow: hidden;
+	}
+
+	.pulse {
+		width: 100px;
+		height: 100px;
+		border: 1px solid var(--color-secondary);
+		border-radius: 50%;
+		animation: pulse-anim 3s infinite;
+	}
+
+	@keyframes pulse-anim {
+		0% { transform: scale(0.5); opacity: 1; }
+		100% { transform: scale(2.5); opacity: 0; }
+	}
+
+	.lines {
+		width: 100%;
+		height: 100%;
+		background-image: repeating-linear-gradient(45deg, transparent, transparent 20px, rgba(238, 234, 225, 0.03) 20px, rgba(238, 234, 225, 0.03) 40px);
+	}
+
+	@media (max-width: 768px) {
+		.alt .strategy-image {
+			order: 2;
+		}
+	}
+</style>

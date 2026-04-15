@@ -17,9 +17,14 @@
 			</svg>
 		</div>
 
-		<!-- Drifting Drone silhouettes -->
-		<div class="drone-silhouette drone-1"></div>
-		<div class="drone-silhouette drone-2"></div>
+		<!-- Swarm of Drones -->
+		<div class="drone-swarm">
+			<div class="drone d1"></div>
+			<div class="drone d2"></div>
+			<div class="drone d3"></div>
+			<div class="drone d4"></div>
+			<div class="drone d5"></div>
+		</div>
 	</div>
 
 	<div class="container">
@@ -100,48 +105,88 @@
 		color: var(--color-secondary);
 		opacity: 0.3;
 		animation: float 20s ease-in-out infinite;
+		transform: scale(1.15); /* Reduced from 1.5 */
 	}
 
 	.satellite-svg {
+		width: 225px; /* Reduced from 300px */
+		height: 225px;
 		filter: drop-shadow(0 0 10px rgba(238, 234, 225, 0.2));
 	}
 
 	@keyframes float {
-		0%, 100% { transform: translateY(0) rotate(0deg); }
-		50% { transform: translateY(-30px) rotate(5deg); }
+		0%, 100% { transform: translateY(0) rotate(0deg) scale(1.15); }
+		50% { transform: translateY(-30px) rotate(5deg) scale(1.15); }
 	}
 
-	/* Drone Silhouettes */
-	.drone-silhouette {
+	/* Drone Swarm Styling */
+	.drone-swarm {
 		position: absolute;
-		width: 40px;
-		height: 10px;
-		background: rgba(238, 234, 225, 0.1);
-		clip-path: polygon(0 50%, 20% 0, 80% 0, 100% 50%, 80% 100%, 20% 100%);
-		filter: blur(1px);
+		inset: 0;
+		pointer-events: none;
 	}
 
-	.drone-1 {
-		top: 40%;
-		left: -50px;
-		animation: drift-right 25s linear infinite;
+	.drone {
+		position: absolute;
+		width: 36px; /* Reduced from 48px */
+		height: 36px;
+		color: rgba(238, 234, 225, 0.1);
+		pointer-events: none;
+		transition: color 0.5s ease;
 	}
 
-	.drone-2 {
-		top: 70%;
-		right: -50px;
-		animation: drift-left 30s linear infinite;
-		animation-delay: 5s;
+	/* Central Body */
+	.drone::before {
+		content: '';
+		position: absolute;
+		top: 50%;
+		left: 50%;
+		transform: translate(-50%, -50%);
+		width: 4.5px; /* Reduced from 6px */
+		height: 4.5px;
+		background: currentColor;
+		border-radius: 50%;
 	}
 
-	@keyframes drift-right {
-		from { left: -50px; transform: scale(0.8); }
-		to { left: 110%; transform: scale(1.2); }
+	/* 4 Circular Rotors */
+	.drone::after {
+		content: '';
+		position: absolute;
+		top: 50%;
+		left: 50%;
+		transform: translate(-50%, -50%);
+		width: 7.5px; /* Reduced from 10px */
+		height: 7.5px;
+		border: 1px solid currentColor;
+		border-radius: 50%;
+		box-shadow: 
+			-9px -9px 0 0 rgba(238, 234, 225, 0.05),
+			9px -9px 0 0 rgba(238, 234, 225, 0.05),
+			-9px 9px 0 0 rgba(238, 234, 225, 0.05),
+			9px 9px 0 0 rgba(238, 234, 225, 0.05);
 	}
 
-	@keyframes drift-left {
-		from { right: -50px; transform: scale(1.2); }
-		to { right: 110%; transform: scale(0.8); }
+	.d1 { top: 15%; left: -60px; animation: drift-1 30s linear infinite; }
+	.d2 { top: 40%; right: -60px; animation: drift-2 35s linear infinite; }
+	.d3 { top: 65%; left: -60px; animation: drift-1 40s linear infinite; animation-delay: 10s; }
+	.d4 { top: 25%; right: -60px; animation: drift-2 28s linear infinite; animation-delay: 5s; }
+	.d5 { top: 80%; left: -60px; animation: drift-1 45s linear infinite; animation-delay: 2s; }
+	.d6 { top: 55%; left: -60px; animation: drift-1 32s linear infinite; animation-delay: 7s; }
+	.d7 { top: 10%; right: -60px; animation: drift-2 42s linear infinite; animation-delay: 3s; }
+	.d8 { top: 70%; right: -60px; animation: drift-2 38s linear infinite; animation-delay: 12s; }
+	.d9 { top: 33%; left: -60px; animation: drift-1 36s linear infinite; animation-delay: 1s; }
+	.d10 { top: 85%; right: -60px; animation: drift-2 48s linear infinite; }
+
+	@keyframes drift-1 {
+		0% { left: -60px; transform: translateY(0); }
+		50% { transform: translateY(15px); }
+		100% { left: 110%; transform: translateY(0); }
+	}
+
+	@keyframes drift-2 {
+		0% { right: -60px; transform: translateY(0); }
+		50% { transform: translateY(-15px); }
+		100% { right: 110%; transform: translateY(0); }
 	}
 
 	.hero-content {

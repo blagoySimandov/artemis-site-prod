@@ -1,0 +1,321 @@
+---
+---
+<section class="blueprint-section">
+	<div class="container">
+		<div class="blueprint-grid">
+			<div class="blueprint-content">
+				<div class="tech-header">
+					<span class="status-indicator">SYSTEM: ANALYSIS ACTIVE</span>
+					<span class="version">VER 4.0.2</span>
+				</div>
+				<h2 class="blueprint-title">Strategic <br/>Asset <span class="outline">Analysis</span></h2>
+				<p>Our investment model is built on deep technical analysis of sovereign defense assets. We prioritize platforms with modular architecture and high-reliability subsystems.</p>
+				
+				<div class="data-points">
+					<div class="data-item">
+						<span class="data-label">Domain</span>
+						<span class="data-value">Multi-Orbital / LEO</span>
+					</div>
+					<div class="data-item">
+						<span class="data-label">Function</span>
+						<span class="data-value">Persistent Surveillance</span>
+					</div>
+					<div class="data-item">
+						<span class="data-label">Resilience</span>
+						<span class="data-value">High / Redundant</span>
+					</div>
+				</div>
+				
+				<div class="live-feed">
+					<div class="feed-line">SCANNING TARGET... <span class="blink">|</span></div>
+					<div class="feed-line">ENCRYPTION: AES-256-GCM</div>
+					<div class="feed-line">LATENCY: 12ms</div>
+				</div>
+			</div>
+
+			<div class="blueprint-visual">
+				<div id="three-container" class="satellite-blueprint">
+					<!-- Three.js will inject here -->
+				</div>
+			</div>
+		</div>
+	</div>
+</section>
+
+<script>
+	import * as THREE from 'three';
+
+	function initSatellite() {
+		const container = document.getElementById('three-container');
+		if (!container) return;
+
+		const scene = new THREE.Scene();
+		const camera = new THREE.PerspectiveCamera(45, 1, 0.1, 1000);
+		// Moved camera up slightly and pulled back for better framing
+		camera.position.set(0, 4, 12);
+		camera.lookAt(0, 0, 0);
+
+		const renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true });
+		renderer.setSize(container.clientWidth, container.clientHeight);
+		renderer.setPixelRatio(window.devicePixelRatio);
+		container.appendChild(renderer.domElement);
+
+		const satelliteGroup = new THREE.Group();
+		scene.add(satelliteGroup);
+
+		// Material for the wireframe lines
+		const lineMaterial = new THREE.LineBasicMaterial({ 
+			color: 0xeeeae1, 
+			transparent: true, 
+			opacity: 0.5 
+		});
+
+		const pointMaterial = new THREE.PointsMaterial({
+			color: 0xeeeae1,
+			size: 0.05,
+			transparent: true,
+			opacity: 0.8
+		});
+
+		// 1. Core Body (Layered)
+		const bodyGeo = new THREE.BoxGeometry(1.2, 2.2, 1.2);
+		const bodyEdges = new THREE.EdgesGeometry(bodyGeo);
+		const bodyLine = new THREE.LineSegments(bodyEdges, lineMaterial);
+		satelliteGroup.add(bodyLine);
+
+		// Internal components
+		const innerGeo = new THREE.BoxGeometry(0.8, 1.8, 0.8);
+		const innerEdges = new THREE.EdgesGeometry(innerGeo);
+		const innerLine = new THREE.LineSegments(innerEdges, new THREE.LineBasicMaterial({ color: 0xeeeae1, transparent: true, opacity: 0.2 }));
+		satelliteGroup.add(innerLine);
+
+		// 2. Solar Panels (Detailed)
+		const createPanel = (side) => {
+			const panelGroup = new THREE.Group();
+			
+			// Main frame
+			const panelGeo = new THREE.BoxGeometry(4.5, 1.8, 0.05);
+			const panelEdges = new THREE.EdgesGeometry(panelGeo);
+			const panelLine = new THREE.LineSegments(panelEdges, lineMaterial);
+			panelGroup.add(panelLine);
+
+			// Grid Detail
+			for (let i = -2; i <= 2; i += 0.5) {
+				const gv = new THREE.BoxGeometry(0.01, 1.8, 0.06);
+				const l = new THREE.LineSegments(new THREE.EdgesGeometry(gv), lineMaterial);
+				l.position.x = i;
+				panelGroup.add(l);
+			}
+			for (let j = -0.75; j <= 0.75; j += 0.5) {
+				const gh = new THREE.BoxGeometry(4.5, 0.01, 0.06);
+				const l = new THREE.LineSegments(new THREE.EdgesGeometry(gh), lineMaterial);
+				l.position.y = j;
+				panelGroup.add(l);
+			}
+
+			// Support Strut
+			const strutGeo = new THREE.CylinderGeometry(0.05, 0.05, 1, 8);
+			const sEdges = new THREE.EdgesGeometry(strutGeo);
+			const sLine = new THREE.LineSegments(sEdges, lineMaterial);
+			sLine.rotation.z = Math.PI / 2;
+			sLine.position.x = side * -2.75;
+			
+			panelGroup.position.x = side * 3.2;
+			satelliteGroup.add(panelGroup);
+			satelliteGroup.add(sLine);
+		};
+
+		createPanel(1);
+		createPanel(-1);
+
+		// 3. Sensor Arrays & Antennae
+		// Main Dish
+		const dishGeo = new THREE.ConeGeometry(0.6, 0.8, 12, 1, true);
+		const dishEdges = new THREE.EdgesGeometry(dishGeo);
+		const dishLine = new THREE.LineSegments(dishEdges, lineMaterial);
+		dishLine.position.y = -1.8;
+		dishLine.rotation.x = Math.PI;
+		satelliteGroup.add(dishLine);
+
+		// Top Sensors
+		const sensorGeo = new THREE.SphereGeometry(0.3, 8, 8);
+		const sensorEdges = new THREE.EdgesGeometry(sensorGeo);
+		const sensorLine = new THREE.LineSegments(sensorEdges, lineMaterial);
+		sensorLine.position.set(0, 1.4, 0);
+		satelliteGroup.add(sensorLine);
+
+		// 4. Points (Vertices) for "Tech" look
+		const points = new THREE.Points(bodyEdges, pointMaterial);
+		satelliteGroup.add(points);
+
+		// 5. Wireframe Earth (Context)
+		const earthGeo = new THREE.SphereGeometry(25, 32, 32);
+		const earthEdges = new THREE.EdgesGeometry(earthGeo);
+		const earthLine = new THREE.LineSegments(earthEdges, new THREE.LineBasicMaterial({ color: 0xeeeae1, transparent: true, opacity: 0.05 }));
+		earthLine.position.set(0, -28, -10);
+		scene.add(earthLine);
+
+		// Animation
+		function animate() {
+			requestAnimationFrame(animate);
+			
+			satelliteGroup.rotation.y += 0.003;
+			satelliteGroup.rotation.x += 0.001;
+			
+			earthLine.rotation.y += 0.0005;
+			
+			renderer.render(scene, camera);
+		}
+
+		// Handle resize
+		window.addEventListener('resize', () => {
+			const width = container.clientWidth;
+			const height = container.clientHeight;
+			renderer.setSize(width, height);
+			camera.aspect = width / height;
+			camera.updateProjectionMatrix();
+		});
+
+		animate();
+	}
+
+	initSatellite();
+</script>
+
+<style>
+	.blueprint-section {
+		padding: 10rem 0;
+		background-color: var(--color-primary);
+		border-top: 1px solid rgba(238, 234, 225, 0.05);
+		overflow: hidden;
+	}
+
+	.blueprint-grid {
+		display: grid;
+		grid-template-columns: 1fr 1fr;
+		align-items: center;
+		gap: 6rem;
+	}
+
+	.tech-header {
+		display: flex;
+		justify-content: space-between;
+		align-items: center;
+		margin-bottom: 1.5rem;
+		max-width: 500px;
+	}
+
+	.version {
+		font-family: monospace;
+		font-size: 0.7rem;
+		opacity: 0.3;
+	}
+
+	.status-indicator {
+		display: inline-flex;
+		align-items: center;
+		gap: 0.5rem;
+		font-size: 0.7rem;
+		font-family: monospace;
+		color: #58cc02;
+		padding: 0.25rem 0.75rem;
+		border: 1px solid currentColor;
+		border-radius: 20px;
+	}
+
+	.status-indicator::before {
+		content: '';
+		width: 6px;
+		height: 6px;
+		background: currentColor;
+		border-radius: 50%;
+		animation: blink 1.5s infinite;
+	}
+
+	@keyframes blink {
+		0%, 100% { opacity: 1; }
+		50% { opacity: 0.3; }
+	}
+
+	.blueprint-title {
+		font-size: clamp(2.5rem, 5vw, 4rem);
+		line-height: 1;
+		margin-bottom: 2rem;
+	}
+
+	.outline {
+		color: transparent;
+		-webkit-text-stroke: 1px var(--color-secondary);
+	}
+
+	.blueprint-content p {
+		font-size: 1.1rem;
+		opacity: 0.7;
+		margin-bottom: 3rem;
+		max-width: 500px;
+	}
+
+	.data-points {
+		display: grid;
+		grid-template-columns: repeat(3, 1fr);
+		gap: 2rem;
+		border-top: 1px solid rgba(238, 234, 225, 0.1);
+		padding-top: 2rem;
+		margin-bottom: 3rem;
+	}
+
+	.data-label {
+		display: block;
+		font-size: 0.7rem;
+		text-transform: uppercase;
+		letter-spacing: 0.1em;
+		opacity: 0.4;
+		margin-bottom: 0.5rem;
+	}
+
+	.data-value {
+		font-size: 0.9rem;
+		font-weight: 600;
+	}
+
+	.live-feed {
+		font-family: monospace;
+		font-size: 0.75rem;
+		color: rgba(238, 234, 225, 0.4);
+		border-left: 1px solid rgba(238, 234, 225, 0.1);
+		padding-left: 1rem;
+	}
+
+	.feed-line { margin-bottom: 0.25rem; }
+	.blink { animation: blink 1s infinite; }
+
+	.blueprint-visual {
+		position: relative;
+		display: flex;
+		justify-content: center;
+		align-items: center;
+	}
+
+	.satellite-blueprint {
+		position: relative;
+		width: 100%;
+		height: 600px;
+		margin-top: -50px; /* Pull visual up */
+	}
+
+	@media (max-width: 1024px) {
+		.blueprint-grid {
+			grid-template-columns: 1fr;
+			gap: 2rem;
+			text-align: center;
+		}
+		.blueprint-content p {
+			margin-left: auto;
+			margin-right: auto;
+		}
+		.data-points { justify-content: center; }
+		.live-feed { border: none; padding: 0; }
+		.blueprint-visual { order: -1; }
+		.satellite-blueprint { height: 400px; }
+	}
+</style>

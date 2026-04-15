@@ -4,9 +4,18 @@ import Footer from '../components/Footer.astro';
 
 interface Props {
 	title: string;
+	description?: string;
+	image?: string;
 }
 
-const { title } = Astro.props;
+const {
+	title,
+	description = "Artemis Capital Partners is a Luxembourg-based private equity firm investing in established European defence and dual-use technology companies.",
+	image = "/og-image.png",
+} = Astro.props;
+
+const pageTitle = `${title} | Artemis Capital Partners`;
+const canonicalURL = new URL(Astro.url.pathname, Astro.site);
 ---
 
 <!doctype html>
@@ -19,8 +28,23 @@ const { title } = Astro.props;
 		<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
 		<link rel="manifest" href="/site.webmanifest">
 		<link rel="icon" href="/favicon.ico" />
+		<link rel="canonical" href={canonicalURL} />
 		<meta name="generator" content={Astro.generator} />
-		<title>{title} | Artemis Capital Partners</title>
+		<title>{pageTitle}</title>
+		<meta name="description" content={description} />
+
+		<meta property="og:type" content="website" />
+		<meta property="og:url" content={canonicalURL} />
+		<meta property="og:title" content={pageTitle} />
+		<meta property="og:description" content={description} />
+		<meta property="og:image" content={new URL(image, Astro.url)} />
+		<meta property="og:site_name" content="Artemis Capital Partners" />
+
+		<meta name="twitter:card" content="summary_large_image" />
+		<meta name="twitter:title" content={pageTitle} />
+		<meta name="twitter:description" content={description} />
+		<meta name="twitter:image" content={new URL(image, Astro.url)} />
+
 		<link rel="preconnect" href="https://fonts.googleapis.com">
 		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 		<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">

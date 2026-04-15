@@ -2,12 +2,13 @@
 import Layout from '../layouts/Layout.astro';
 import Hero from '../components/Hero.astro';
 import Stats from '../components/Stats.astro';
-import TechGrid from '../components/TechGrid.astro';
+import FeatureShowcase from '../components/FeatureShowcase.astro';
 ---
 
 <Layout title="European Defense & Security VC">
 	<Hero />
-	<section class="mission">
+	
+	<section id="mission" class="mission">
 		<div class="container">
 			<div class="grid grid-cols-2">
 				<div>
@@ -20,7 +21,7 @@ import TechGrid from '../components/TechGrid.astro';
 		</div>
 	</section>
 	
-	<TechGrid />
+	<FeatureShowcase />
 	
 	<Stats />
 

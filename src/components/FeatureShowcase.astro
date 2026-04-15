@@ -1,0 +1,203 @@
+---
+const pillars = [
+	{
+		id: "01",
+		title: "Autonomous Drones",
+		subtitle: "Multi-Domain Supremacy",
+		desc: "From swarm intelligence to long-range surveillance, we invest in the platforms that redefine the modern battlefield and domestic security.",
+		icon: "drone"
+	},
+	{
+		id: "02",
+		title: "Cyber Security",
+		subtitle: "Cognitive Resilience",
+		desc: "Protecting sovereign data and critical infrastructure from advanced persistent threats through AI-driven defense and encryption.",
+		icon: "cyber"
+	},
+	{
+		id: "03",
+		title: "Satellite Tech",
+		subtitle: "Persistent Awareness",
+		desc: "Low-Earth Orbit (LEO) constellations and secure signal processing providing real-time global intelligence and communication.",
+		icon: "satellite"
+	}
+];
+---
+
+<section class="pillars-section">
+	<div class="container">
+		<div class="section-header">
+			<span class="eyebrow">Investment Focus</span>
+			<h2>Pillars of <span class="outline">Modern Defense</span></h2>
+		</div>
+
+		<div class="pillars-grid">
+			{pillars.map(pillar => (
+				<div class="pillar-card">
+					<div class="pillar-bg"></div>
+					<div class="pillar-content">
+						<span class="pillar-id">{pillar.id}</span>
+						<div class="pillar-icon">
+							{pillar.icon === 'drone' && (
+								<svg width="40" height="40" viewBox="0 0 40 40" fill="none" stroke="currentColor" stroke-width="1.5">
+									<path d="M5 20H35M20 5V35M12 12L28 28M28 12L12 28" stroke-opacity="0.2"/>
+									<circle cx="20" cy="20" r="10"/>
+									<circle cx="20" cy="20" r="3" fill="currentColor"/>
+								</svg>
+							)}
+							{pillar.icon === 'cyber' && (
+								<svg width="40" height="40" viewBox="0 0 40 40" fill="none" stroke="currentColor" stroke-width="1.5">
+									<rect x="10" y="10" width="20" height="20" rx="2"/>
+									<path d="M15 15H25V25H15V15Z" fill="currentColor" fill-opacity="0.1"/>
+									<path d="M20 5V10M20 30V35M5 20H10M30 20H35" stroke-linecap="round"/>
+								</svg>
+							)}
+							{pillar.icon === 'satellite' && (
+								<svg width="40" height="40" viewBox="0 0 40 40" fill="none" stroke="currentColor" stroke-width="1.5">
+									<path d="M20 10C25.5 10 30 14.5 30 20C30 25.5 25.5 30 20 30" stroke-opacity="0.3"/>
+									<path d="M20 5C28.3 5 35 11.7 35 20C35 28.3 28.3 35 20 35" stroke-opacity="0.1"/>
+									<rect x="16" y="16" width="8" height="8" rx="1"/>
+									<path d="M10 20H16M24 20H30" stroke-linecap="round"/>
+								</svg>
+							)}
+						</div>
+						<h3>{pillar.title}</h3>
+						<span class="subtitle">{pillar.subtitle}</span>
+						<p>{pillar.desc}</p>
+					</div>
+					<div class="scan-line"></div>
+				</div>
+			))}
+		</div>
+	</div>
+</section>
+
+<style>
+	.pillars-section {
+		padding: 10rem 0;
+		background-color: #0f1521;
+		position: relative;
+		overflow: hidden;
+	}
+
+	.section-header {
+		margin-bottom: 5rem;
+	}
+
+	.eyebrow {
+		display: block;
+		font-size: 0.8rem;
+		text-transform: uppercase;
+		letter-spacing: 0.2em;
+		color: rgba(238, 234, 225, 0.4);
+		margin-bottom: 1rem;
+	}
+
+	h2 {
+		font-size: clamp(2.5rem, 5vw, 4rem);
+		line-height: 1.1;
+	}
+
+	.outline {
+		color: transparent;
+		-webkit-text-stroke: 1px var(--color-secondary);
+	}
+
+	.pillars-grid {
+		display: grid;
+		grid-template-columns: repeat(3, 1fr);
+		gap: 1px;
+		background: rgba(238, 234, 225, 0.05);
+		border: 1px solid rgba(238, 234, 225, 0.05);
+	}
+
+	.pillar-card {
+		position: relative;
+		background: #0f1521;
+		padding: 4rem 3rem;
+		overflow: hidden;
+		transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+	}
+
+	.pillar-card:hover {
+		background: #151d2b;
+	}
+
+	.pillar-card:hover .pillar-bg {
+		opacity: 1;
+		transform: scale(1.1);
+	}
+
+	.pillar-bg {
+		position: absolute;
+		inset: 0;
+		background: radial-gradient(circle at top right, rgba(238, 234, 225, 0.05), transparent 70%);
+		opacity: 0;
+		transition: all 0.8s ease;
+	}
+
+	.pillar-id {
+		display: block;
+		font-size: 0.8rem;
+		font-weight: 700;
+		color: rgba(238, 234, 225, 0.2);
+		margin-bottom: 2rem;
+		font-family: monospace;
+	}
+
+	.pillar-icon {
+		color: var(--color-secondary);
+		margin-bottom: 2.5rem;
+	}
+
+	h3 {
+		font-size: 1.75rem;
+		margin-bottom: 0.5rem;
+	}
+
+	.subtitle {
+		display: block;
+		font-size: 0.75rem;
+		text-transform: uppercase;
+		letter-spacing: 0.15em;
+		color: rgba(238, 234, 225, 0.5);
+		margin-bottom: 2rem;
+	}
+
+	.pillar-card p {
+		font-size: 1rem;
+		opacity: 0.6;
+		line-height: 1.7;
+	}
+
+	/* Scanning line animation */
+	.scan-line {
+		position: absolute;
+		top: -100%;
+		left: 0;
+		width: 100%;
+		height: 2px;
+		background: linear-gradient(90deg, transparent, var(--color-secondary), transparent);
+		opacity: 0;
+		z-index: 2;
+	}
+
+	.pillar-card:hover .scan-line {
+		animation: scan 3s linear infinite;
+		opacity: 0.3;
+	}
+
+	@keyframes scan {
+		0% { top: -5%; }
+		100% { top: 105%; }
+	}
+
+	@media (max-width: 1024px) {
+		.pillars-grid {
+			grid-template-columns: 1fr;
+		}
+		.pillar-card {
+			padding: 3rem 2rem;
+		}
+	}
+</style>

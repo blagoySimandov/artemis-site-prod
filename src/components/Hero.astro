@@ -4,12 +4,29 @@
 	<div class="hero-bg">
 		<div class="grid-overlay"></div>
 		<div class="radar"></div>
+		
+		<!-- Floating Satellite SVG -->
+		<div class="satellite-container">
+			<svg width="200" height="200" viewBox="0 0 200 200" fill="none" xmlns="http://www.w3.org/2000/svg" class="satellite-svg">
+				<rect x="70" y="90" width="60" height="20" rx="2" fill="currentColor" fill-opacity="0.2"/>
+				<rect x="85" y="80" width="30" height="40" rx="4" stroke="currentColor" stroke-width="2"/>
+				<rect x="40" y="85" width="40" height="30" rx="1" stroke="currentColor" stroke-width="1.5" stroke-opacity="0.5"/>
+				<rect x="120" y="85" width="40" height="30" rx="1" stroke="currentColor" stroke-width="1.5" stroke-opacity="0.5"/>
+				<circle cx="100" cy="100" r="3" fill="currentColor"/>
+				<path d="M100 80V60M100 60L95 65M100 60L105 65" stroke="currentColor" stroke-width="1.5"/>
+			</svg>
+		</div>
+
+		<!-- Drifting Drone silhouettes -->
+		<div class="drone-silhouette drone-1"></div>
+		<div class="drone-silhouette drone-2"></div>
 	</div>
+
 	<div class="container">
 		<div class="hero-content">
 			<span class="eyebrow">Defense Technology Venture Capital</span>
 			<h1>Securing the <br/> <span class="text-highlight">Future of Europe</span></h1>
-			<p>Strategic investments in Drones, Cybersecurity, and Space Systems.</p>
+			<p>Strategic investments in Drones, Cybersecurity, and Space Systems to safeguard our democracies.</p>
 			<div class="hero-actions">
 				<a href="/investment-strategies" class="btn">View Strategies</a>
 				<a href="#mission" class="scroll-down">
@@ -66,13 +83,65 @@
 		position: absolute;
 		inset: -1px;
 		border-radius: 50%;
-		background: conic-gradient(from 0deg, transparent 0deg, rgba(238, 234, 225, 0.1) 90deg, transparent 90deg);
-		animation: rotate 10s linear infinite;
+		background: conic-gradient(from 0deg, transparent 0deg, rgba(238, 234, 225, 0.15) 90deg, transparent 90deg);
+		animation: rotate 12s linear infinite;
 	}
 
 	@keyframes rotate {
 		from { transform: rotate(0deg); }
 		to { transform: rotate(360deg); }
+	}
+
+	/* Satellite Styling */
+	.satellite-container {
+		position: absolute;
+		top: 15%;
+		right: 10%;
+		color: var(--color-secondary);
+		opacity: 0.3;
+		animation: float 20s ease-in-out infinite;
+	}
+
+	.satellite-svg {
+		filter: drop-shadow(0 0 10px rgba(238, 234, 225, 0.2));
+	}
+
+	@keyframes float {
+		0%, 100% { transform: translateY(0) rotate(0deg); }
+		50% { transform: translateY(-30px) rotate(5deg); }
+	}
+
+	/* Drone Silhouettes */
+	.drone-silhouette {
+		position: absolute;
+		width: 40px;
+		height: 10px;
+		background: rgba(238, 234, 225, 0.1);
+		clip-path: polygon(0 50%, 20% 0, 80% 0, 100% 50%, 80% 100%, 20% 100%);
+		filter: blur(1px);
+	}
+
+	.drone-1 {
+		top: 40%;
+		left: -50px;
+		animation: drift-right 25s linear infinite;
+	}
+
+	.drone-2 {
+		top: 70%;
+		right: -50px;
+		animation: drift-left 30s linear infinite;
+		animation-delay: 5s;
+	}
+
+	@keyframes drift-right {
+		from { left: -50px; transform: scale(0.8); }
+		to { left: 110%; transform: scale(1.2); }
+	}
+
+	@keyframes drift-left {
+		from { right: -50px; transform: scale(1.2); }
+		to { right: 110%; transform: scale(0.8); }
 	}
 
 	.hero-content {
@@ -85,7 +154,7 @@
 		display: block;
 		font-size: 0.9rem;
 		text-transform: uppercase;
-		letter-spacing: 0.2em;
+		letter-spacing: 0.25em;
 		margin-bottom: 1.5rem;
 		color: rgba(238, 234, 225, 0.6);
 	}
@@ -150,6 +219,11 @@
 			flex-direction: column;
 			align-items: flex-start;
 			gap: 2rem;
+		}
+		.satellite-container {
+			top: 5%;
+			right: 5%;
+			transform: scale(0.6);
 		}
 	}
 </style>

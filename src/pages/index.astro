@@ -1,9 +1,8 @@
 ---
 import Layout from '../layouts/Layout.astro';
 import Hero from '../components/Hero.astro';
-import Stats from '../components/Stats.astro';
 import FeatureShowcase from '../components/FeatureShowcase.astro';
-import Blueprint from '../components/Blueprint.astro';
+import WhyArtemis from '../components/WhyArtemis.astro';
 ---
 
 <Layout title="European Defense & Security VC">
@@ -13,20 +12,54 @@ import Blueprint from '../components/Blueprint.astro';
 		<div class="container">
 			<div class="grid grid-cols-2">
 				<div>
-					<h2 class="section-title">Safeguarding the European Frontier</h2>
+					<h2 class="section-title">Luxembourg-based Private Equity</h2>
 				</div>
 				<div>
-					<p class="lead">Artemis Capital Partners is a leading European investment firm dedicated to the advancement of defense and security technology. We partner with visionary founders developing dual-use technologies that protect democracies and enhance regional stability.</p>
+					<p class="lead">Artemis Capital Partners invests in the defence and dual-use technology sector across the EU and NATO ecosystem. We target growth and scale-up companies positioned to benefit from the structural rearmament of Europe and the rapid expansion of defence industrial capacity.</p>
 				</div>
 			</div>
 		</div>
 	</section>
 	
 	<FeatureShowcase />
-
-	<Blueprint />
 	
-	<Stats />
+	<WhyArtemis />
+
+	<section class="thesis">
+		<div class="container">
+			<div class="section-header text-center">
+				<span class="eyebrow">Investment Thesis</span>
+				<h2>Structural Drivers of <span class="outline">Defence</span></h2>
+				<p class="section-subtitle">Artemis invests in European defence and dual-use technology companies positioned to benefit from the structural rearmament of Europe and the rapid expansion of defence industrial capacity.</p>
+			</div>
+			<div class="grid grid-cols-4 thesis-grid">
+				<div class="thesis-card">
+					<div class="card-glow"></div>
+					<span class="card-num">01</span>
+					<h4>Structural Growth in Defence Spending</h4>
+					<p>European defence budgets are increasing rapidly as NATO commitments rise and nations prioritize national security infrastructure.</p>
+				</div>
+				<div class="thesis-card">
+					<div class="card-glow"></div>
+					<span class="card-num">02</span>
+					<h4>Technology Transformation of Warfare</h4>
+					<p>Modern defence increasingly relies on electronic warfare, satellites, AI, and autonomous systems, necessitating rapid technological deployment.</p>
+				</div>
+				<div class="thesis-card">
+					<div class="card-glow"></div>
+					<span class="card-num">03</span>
+					<h4>European Strategic Autonomy</h4>
+					<p>EU and NATO are prioritizing domestic defence capabilities and resilient supply chains to ensure long-term technological sovereignty.</p>
+				</div>
+				<div class="thesis-card">
+					<div class="card-glow"></div>
+					<span class="card-num">04</span>
+					<h4>Industrial Capacity Gap</h4>
+					<p>European supply chains must scale quickly to support modern defence systems, creating significant opportunities for industrial expansion.</p>
+				</div>
+			</div>
+		</div>
+	</section>
 
 	<section class="partners">
 		<div class="container text-center">
@@ -35,18 +68,17 @@ import Blueprint from '../components/Blueprint.astro';
 				<div class="partner-logo">
 					<span class="partner-name">TBS.bg</span>
 				</div>
-				<!-- Add more partners here -->
 			</div>
 		</div>
 	</section>
 
 	<section class="cta">
 		<div class="container text-center">
-			<h2>Join the Next Generation of Defense Tech</h2>
-			<p>We are always looking for visionary entrepreneurs and talented professionals.</p>
+			<h2>Strategic Investment in NATO Security</h2>
+			<p>Leveraging deep expertise in structuring, governance, and industrial matchmaking.</p>
 			<div class="cta-btns">
 				<a href="/investment-strategies" class="btn">Our Strategies</a>
-				<a href="/careers" class="btn btn-outline">Join Us</a>
+				<a href="/team" class="btn btn-outline">Our Team</a>
 			</div>
 		</div>
 	</section>
@@ -69,6 +101,92 @@ import Blueprint from '../components/Blueprint.astro';
 		color: var(--color-primary);
 	}
 
+	.thesis {
+		padding: 6rem 0 4rem;
+		background: radial-gradient(circle at 50% 50%, rgba(238, 234, 225, 0.03) 0%, transparent 70%);
+	}
+
+	.section-header { margin-bottom: 6rem; }
+	
+	.eyebrow { 
+		display: block; 
+		text-transform: uppercase; 
+		letter-spacing: 0.25em; 
+		font-size: 0.8rem; 
+		margin-bottom: 1.5rem; 
+		opacity: 0.5;
+	}
+
+	.section-subtitle {
+		max-width: 700px;
+		margin: 2rem auto 0;
+		font-size: 1.1rem;
+		opacity: 0.6;
+		line-height: 1.6;
+	}
+
+	.thesis-grid { gap: 1.5rem; }
+
+	.thesis-card {
+		position: relative;
+		padding: 3rem 2rem;
+		background: rgba(24, 33, 50, 0.4);
+		border: 1px solid rgba(238, 234, 225, 0.05);
+		transition: all 0.4s ease;
+		overflow: hidden;
+	}
+
+	.thesis-card:hover {
+		border-color: rgba(238, 234, 225, 0.2);
+		transform: translateY(-5px);
+		background: rgba(24, 33, 50, 0.6);
+	}
+
+	.card-glow {
+		position: absolute;
+		top: 0;
+		right: 0;
+		width: 100px;
+		height: 100px;
+		background: radial-gradient(circle at top right, rgba(238, 234, 225, 0.05), transparent 70%);
+		opacity: 0;
+		transition: opacity 0.4s ease;
+	}
+
+	.thesis-card:hover .card-glow { opacity: 1; }
+
+	.card-num {
+		font-family: monospace;
+		font-size: 0.8rem;
+		color: var(--color-secondary);
+		opacity: 0.2;
+		display: block;
+		margin-bottom: 2rem;
+	}
+
+	.thesis-card h4 {
+		margin-bottom: 1.5rem;
+		color: var(--color-secondary);
+		font-size: 1rem;
+		line-height: 1.4;
+		min-height: 3rem;
+	}
+
+	.thesis-card p {
+		font-size: 0.9rem;
+		opacity: 0.5;
+		line-height: 1.6;
+	}
+
+	@media (max-width: 1024px) {
+		.grid-cols-4 { grid-template-columns: repeat(2, 1fr); }
+	}
+
+	@media (max-width: 640px) {
+		.grid-cols-4 { grid-template-columns: 1fr; }
+		.thesis { padding: 8rem 0; }
+	}
+
 	.text-center {
 		text-align: center;
 	}
@@ -79,8 +197,13 @@ import Blueprint from '../components/Blueprint.astro';
 		text-align: center;
 	}
 
+	.outline {
+		color: transparent;
+		-webkit-text-stroke: 1px var(--color-secondary);
+	}
+
 	.partners {
-		padding: 6rem 0;
+		padding: 4rem 0 8rem;
 		background-color: var(--color-primary);
 	}
 

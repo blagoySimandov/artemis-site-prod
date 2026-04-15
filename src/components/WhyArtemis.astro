@@ -1,0 +1,150 @@
+---
+const reasons = [
+	{
+		title: "Proprietary Deal Access",
+		desc: "Deep relationships across the European defence and satellite ecosystem generate early access to proprietary opportunities."
+	},
+	{
+		title: "Operator-Led Investment Team",
+		desc: "Partners bring executive leadership experience in telecom, satellite and technology sectors, including large-scale transformations and institutional exits."
+	},
+	{
+		title: "Deep Technology Understanding",
+		desc: "Hands-on expertise across satellite communications, electronic warfare, AI and defense technologies."
+	},
+	{
+		title: "European Defence Ecosystem Access",
+		desc: "Strong relationships with industrial partners, defence suppliers and program stakeholders across the EU and NATO ecosystem."
+	}
+];
+---
+
+<section class="why-artemis">
+	<div class="container">
+		<div class="grid grid-cols-2 header-grid">
+			<div class="section-header">
+				<span class="eyebrow">The Artemis Advantage</span>
+				<h2>Why <span class="outline">Artemis</span></h2>
+			</div>
+			<div class="header-desc">
+				<p>Artemis is an active investor supporting portfolio companies through operational leadership, deep sector expertise, and access to EU defence programs and global markets.</p>
+			</div>
+		</div>
+
+		<div class="reasons-grid">
+			{reasons.map(reason => (
+				<div class="reason-card">
+					<div class="card-line"></div>
+					<div class="card-content">
+						<h3>{reason.title}</h3>
+						<p>{reason.desc}</p>
+					</div>
+				</div>
+			))}
+		</div>
+	</div>
+</section>
+
+<style>
+	.why-artemis {
+		padding: 10rem 0 6rem;
+		background-color: var(--color-primary);
+		border-top: 1px solid rgba(238, 234, 225, 0.05);
+	}
+
+	.header-grid {
+		align-items: flex-end;
+		margin-bottom: 6rem;
+		gap: 4rem;
+	}
+
+	.eyebrow {
+		display: block;
+		font-size: 0.8rem;
+		text-transform: uppercase;
+		letter-spacing: 0.2em;
+		color: rgba(238, 234, 225, 0.4);
+		margin-bottom: 1rem;
+	}
+
+	h2 {
+		font-size: clamp(2.5rem, 5vw, 4rem);
+		line-height: 1.1;
+		margin: 0;
+	}
+
+	.outline {
+		color: transparent;
+		-webkit-text-stroke: 1px var(--color-secondary);
+	}
+
+	.header-desc p {
+		font-size: 1.25rem;
+		opacity: 0.7;
+		max-width: 500px;
+		margin: 0;
+	}
+
+	.reasons-grid {
+		display: grid;
+		grid-template-columns: repeat(4, 1fr);
+		gap: 2rem;
+	}
+
+	.reason-card {
+		position: relative;
+		padding: 2.5rem;
+		background: rgba(238, 234, 225, 0.02);
+		border: 1px solid rgba(238, 234, 225, 0.05);
+		transition: all 0.3s ease;
+	}
+
+	.reason-card:hover {
+		background: rgba(238, 234, 225, 0.04);
+		border-color: rgba(238, 234, 225, 0.1);
+		transform: translateY(-5px);
+	}
+
+	.card-line {
+		position: absolute;
+		top: 0;
+		left: 0;
+		width: 40px;
+		height: 2px;
+		background: var(--color-secondary);
+		opacity: 0.3;
+	}
+
+	h3 {
+		font-size: 1.1rem;
+		margin-bottom: 1.5rem;
+		line-height: 1.4;
+		color: var(--color-secondary);
+	}
+
+	p {
+		font-size: 0.9rem;
+		opacity: 0.6;
+		line-height: 1.6;
+	}
+
+	@media (max-width: 1200px) {
+		.reasons-grid {
+			grid-template-columns: repeat(2, 1fr);
+		}
+	}
+
+	@media (max-width: 768px) {
+		.header-grid {
+			grid-template-columns: 1fr;
+			gap: 2rem;
+			margin-bottom: 4rem;
+		}
+		.reasons-grid {
+			grid-template-columns: 1fr;
+		}
+		.reason-card {
+			padding: 2rem;
+		}
+	}
+</style>

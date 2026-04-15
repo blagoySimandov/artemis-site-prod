@@ -2,29 +2,49 @@
 import Layout from '../layouts/Layout.astro';
 
 const team = [
-	{ name: "Alexander Volkov", role: "Managing Partner", bio: "Former defense analyst with 20 years of experience in aerospace and venture capital." },
-	{ name: "Elena Schmidt", role: "Partner, Technology", bio: "Expert in cybersecurity and autonomous systems. Previously led R&D at a major EU defense contractor." },
-	{ name: "Stanislav Petrov", role: "Investment Director", bio: "Specializes in dual-use technologies and satellite communications." },
-	{ name: "Marcus Thorne", role: "Venture Partner", bio: "Focuses on AI and signal intelligence for modern security applications." }
+	{ 
+		name: "Andrey Bachvarov", 
+		role: "Managing Partner", 
+		bio: "Successful serial entrepreneur with deep connections in the international VC community. Currently board member at Endeavor Bulgaria and BESCO. Companies established by Andrey include Anthill (exited to Sun Capital’s Exadel), EPIX.AI, Power Drone, BICA Services, and others.",
+		image: "/Andrey-Bachvarov.jpg"
+	},
+	{ 
+		name: "Stefan Galabov", 
+		role: "Partner", 
+		bio: "Significant sector experience, technical & commercial know-how and network in the defense industry globally. Currently General Manager of TBS Ltd., a leading international trading company providing advanced technological solutions in the defense industry.",
+		image: "/Stefan-Galabov.jpg"
+	},
+	{ 
+		name: "Stanislav Georgiev", 
+		role: "Partner & CEO", 
+		bio: "Seasoned CEO with 20+ years in telecom, satellite and media, recognized for executing complex transformations, spin-offs and institutional-grade exits for PE investors. Previous roles include CEO of Bulsatcom, Director of A1 Broadcasting, CIO of A1 Telekom Serbia, as well as senior advisory roles with Arthur D. Little and Intelsat.",
+		image: "/Stanislav-Georgiev.jpg"
+	}
 ];
 ---
 
-<Layout title="Our Team">
+<Layout title="Team">
 	<section class="page-header">
 		<div class="container">
-			<h1>Our Team</h1>
-			<p>A multi-disciplinary group of defense experts, technologists, and investors.</p>
+			<span class="eyebrow">Leadership</span>
+			<h1>Our <span class="outline">Team</span></h1>
+			<p>Operator-led leadership with deep technical and commercial expertise.</p>
 		</div>
 	</section>
 
-	<section class="team-grid">
+	<section class="team-grid-section">
 		<div class="container">
-			<div class="grid grid-cols-2">
+			<div class="grid grid-cols-3 team-grid">
 				{team.map(member => (
 					<div class="member-card">
+						<div class="member-image">
+							<img src={member.image} alt={member.name} />
+							<div class="image-overlay"></div>
+						</div>
 						<div class="member-info">
-							<h3>{member.name}</h3>
 							<span class="role">{member.role}</span>
+							<h3>{member.name}</h3>
+							<div class="divider"></div>
 							<p>{member.bio}</p>
 						</div>
 					</div>
@@ -35,45 +55,104 @@ const team = [
 </Layout>
 
 <style>
-	.page-header {
-		padding-top: 10rem;
-		padding-bottom: 4rem;
-		border-bottom: 1px solid rgba(238, 234, 225, 0.1);
+	.page-header { 
+		padding-top: 12rem; 
+		padding-bottom: 4rem; 
+		border-bottom: 1px solid rgba(238, 234, 225, 0.05);
 	}
-
-	.page-header h1 {
-		font-size: 3.5rem;
-		margin-bottom: 1rem;
+	.eyebrow { 
+		display: block; 
+		text-transform: uppercase; 
+		letter-spacing: 0.3em; 
+		font-size: 0.8rem; 
+		margin-bottom: 1rem; 
+		opacity: 0.5;
 	}
+	.outline { color: transparent; -webkit-text-stroke: 1px var(--color-secondary); }
 
-	.page-header p {
-		font-size: 1.25rem;
-		opacity: 0.7;
-		max-width: 600px;
-	}
+	.team-grid-section { padding: 4rem 0 8rem; }
+	
+	.team-grid { gap: 3rem; }
 
-	.member-card {
-		padding: 3rem;
+	.member-card { 
+		background: rgba(24, 33, 50, 0.3); 
 		border: 1px solid rgba(238, 234, 225, 0.05);
-		background-color: rgba(238, 234, 225, 0.02);
+		transition: transform 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
 	}
 
-	.role {
-		display: block;
-		font-size: 0.9rem;
-		text-transform: uppercase;
-		letter-spacing: 0.1em;
-		color: rgba(238, 234, 225, 0.5);
+	.member-card:hover {
+		transform: translateY(-10px);
+		border-color: rgba(238, 234, 225, 0.2);
+	}
+
+	.member-image { 
+		aspect-ratio: 4/5; 
+		overflow: hidden;
+		position: relative;
+		background: #0d121c;
+	}
+
+	.member-image img {
+		width: 100%;
+		height: 100%;
+		object-fit: cover;
+		filter: grayscale(1) contrast(1.1);
+		transition: filter 0.5s ease, transform 0.5s ease;
+	}
+
+	.member-card:hover .member-image img {
+		filter: grayscale(0.5) contrast(1);
+		transform: scale(1.05);
+	}
+
+	.image-overlay {
+		position: absolute;
+		top: 0;
+		left: 0;
+		width: 100%;
+		height: 100%;
+		background: linear-gradient(to bottom, transparent 60%, rgba(24, 33, 50, 0.8));
+	}
+
+	.member-info { padding: 2.5rem; }
+	
+	.role { 
+		display: block; 
+		font-size: 0.7rem; 
+		opacity: 0.4; 
+		text-transform: uppercase; 
+		letter-spacing: 0.15em;
+		margin-bottom: 0.75rem; 
+		font-weight: 600;
+	}
+
+	h3 { 
+		margin-bottom: 1.5rem; 
+		font-size: 1.4rem;
+		letter-spacing: 0.02em;
+	}
+
+	.divider {
+		width: 30px;
+		height: 2px;
+		background: var(--color-secondary);
 		margin-bottom: 1.5rem;
+		opacity: 0.3;
 	}
 
-	h3 {
-		font-size: 1.5rem;
-		margin-bottom: 0.5rem;
+	p { 
+		font-size: 0.9rem; 
+		opacity: 0.6; 
+		line-height: 1.7; 
+		font-weight: 300;
 	}
 
-	.member-card p {
-		opacity: 0.8;
-		font-size: 1rem;
+	@media (max-width: 1024px) {
+		.grid-cols-3 { grid-template-columns: repeat(2, 1fr); }
+	}
+
+	@media (max-width: 640px) {
+		.grid-cols-3 { grid-template-columns: 1fr; }
+		.team-grid-section { padding: 4rem 0; }
 	}
 </style>

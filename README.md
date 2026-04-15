@@ -13,7 +13,11 @@ Inside of your Astro project, you'll see the following folders and files:
 ```text
 /
 ├── public/
-│   └── favicon.svg
+│   ├── favicon.ico
+│   ├── favicon-16x16.png
+│   ├── favicon-32x32.png
+│   ├── apple-touch-icon.png
+│   └── site.webmanifest
 ├── src
 │   ├── assets
 │   │   └── astro.svg

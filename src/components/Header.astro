@@ -12,33 +12,9 @@
 		</button>
 
 		<div id="nav-menu" class="nav-links">
-			<div class="dropdown">
-				<button class="dropbtn">
-					About Us 
-					<svg width="12" height="8" viewBox="0 0 10 6" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M1 1L5 5L9 1" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
-				</button>
-				<div class="dropdown-content">
-					<a href="/about">About Us</a>
-					<a href="/team">Team</a>
-					<a href="/advisors">Senior Advisors</a>
-					<a href="/sustainability">Sustainability</a>
-					<a href="/careers">Careers</a>
-				</div>
-			</div>
-
-			<div class="dropdown">
-				<button class="dropbtn">
-					Investment Strategies 
-					<svg width="12" height="8" viewBox="0 0 10 6" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M1 1L5 5L9 1" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
-				</button>
-				<div class="dropdown-content">
-					<a href="/investment-strategies">Investment Strategies</a>
-					<a href="/infra">Infra</a>
-					<a href="/growth">Growth</a>
-					<a href="/partnerships">Partnerships</a>
-				</div>
-			</div>
-
+			<a href="/about" class="nav-item">About Us</a>
+			<a href="/team" class="nav-item">Team</a>
+			<a href="/investment-strategies" class="nav-item">Investment Strategies</a>
 			<a href="/news" class="nav-item">News and Insights</a>
 		</div>
 	</nav>
@@ -52,18 +28,6 @@
 		menuToggle.classList.toggle('active');
 		navMenu?.classList.toggle('active');
 		document.body.classList.toggle('menu-open');
-	});
-
-	// Handle dropdowns on mobile (click instead of hover)
-	const dropdowns = document.querySelectorAll('.dropdown');
-	dropdowns.forEach(dropdown => {
-		const btn = dropdown.querySelector('.dropbtn');
-		btn?.addEventListener('click', (e) => {
-			if (window.innerWidth <= 768) {
-				e.preventDefault();
-				dropdown.classList.toggle('active');
-			}
-		});
 	});
 </script>
 
@@ -97,7 +61,7 @@
 		align-items: center;
 	}
 
-	.nav-item, .dropbtn {
+	.nav-item {
 		font-size: 0.8rem;
 		font-weight: 500;
 		text-transform: uppercase;
@@ -114,58 +78,8 @@
 		transition: opacity 0.3s ease;
 	}
 
-	.nav-item:hover, .dropbtn:hover {
+	.nav-item:hover {
 		opacity: 0.7;
-	}
-
-	/* Desktop Dropdown Logic */
-	@media (min-width: 769px) {
-		.dropdown {
-			position: relative;
-			display: inline-block;
-		}
-
-		.dropdown-content {
-			display: none;
-			position: absolute;
-			top: 100%;
-			left: 0;
-			background-color: #1a263d;
-			min-width: 240px;
-			box-shadow: 0px 15px 30px rgba(0,0,0,0.4);
-			z-index: 1;
-			border: 1px solid rgba(238, 234, 225, 0.1);
-			padding: 10px 0;
-			margin-top: 10px;
-		}
-
-		.dropdown::after {
-			content: "";
-			position: absolute;
-			top: 100%;
-			left: 0;
-			width: 100%;
-			height: 20px;
-		}
-
-		.dropdown:hover .dropdown-content {
-			display: block;
-		}
-
-		.dropdown-content a {
-			color: var(--color-secondary);
-			padding: 0.8rem 1.5rem;
-			text-decoration: none;
-			display: block;
-			font-size: 0.7rem;
-			text-transform: uppercase;
-			letter-spacing: 0.1em;
-			transition: background 0.2s ease;
-		}
-
-		.dropdown-content a:hover {
-			background: rgba(238, 234, 225, 0.05);
-		}
 	}
 
 	/* Mobile styles */
@@ -219,7 +133,7 @@
 			transform: translateX(0);
 		}
 
-		.nav-item, .dropbtn {
+		.nav-item {
 			font-size: 1.1rem;
 			width: 100%;
 			justify-content: space-between;
@@ -227,35 +141,6 @@
 			border-bottom: 1px solid rgba(238, 234, 225, 0.1);
 			text-align: left;
 			letter-spacing: 0.1em;
-		}
-
-		.dropdown {
-			width: 100%;
-		}
-
-		.dropdown-content {
-			display: none;
-			width: 100%;
-			padding: 0.5rem 0 1.5rem 1.5rem;
-		}
-
-		.dropdown.active .dropdown-content {
-			display: block;
-		}
-
-		.dropdown-content a {
-			padding: 1rem 0;
-			font-size: 0.9rem;
-			text-transform: uppercase;
-			letter-spacing: 0.1em;
-			color: rgba(238, 234, 225, 0.7);
-			border-bottom: 1px solid rgba(238, 234, 225, 0.05);
-			display: block;
-			width: 100%;
-		}
-
-		.dropdown.active .dropbtn svg {
-			transform: rotate(180deg);
 		}
 	}
 

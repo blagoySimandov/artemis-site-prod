@@ -5,17 +5,8 @@
 		<div class="grid-overlay"></div>
 		<div class="radar"></div>
 		
-		<!-- Floating Satellite SVG -->
-		<div class="satellite-container">
-			<svg width="200" height="200" viewBox="0 0 200 200" fill="none" xmlns="http://www.w3.org/2000/svg" class="satellite-svg">
-				<rect x="70" y="90" width="60" height="20" rx="2" fill="currentColor" fill-opacity="0.2"/>
-				<rect x="85" y="80" width="30" height="40" rx="4" stroke="currentColor" stroke-width="2"/>
-				<rect x="40" y="85" width="40" height="30" rx="1" stroke="currentColor" stroke-width="1.5" stroke-opacity="0.5"/>
-				<rect x="120" y="85" width="40" height="30" rx="1" stroke="currentColor" stroke-width="1.5" stroke-opacity="0.5"/>
-				<circle cx="100" cy="100" r="3" fill="currentColor"/>
-				<path d="M100 80V60M100 60L95 65M100 60L105 65" stroke="currentColor" stroke-width="1.5"/>
-			</svg>
-		</div>
+		<!-- 3D Satellite Container -->
+		<div id="three-hero-container" class="three-hero-bg"></div>
 
 		<!-- Swarm of Drones -->
 		<div class="drone-swarm">
@@ -24,14 +15,19 @@
 			<div class="drone d3"></div>
 			<div class="drone d4"></div>
 			<div class="drone d5"></div>
+			<div class="drone d6"></div>
+			<div class="drone d7"></div>
+			<div class="drone d8"></div>
+			<div class="drone d9"></div>
+			<div class="drone d10"></div>
 		</div>
 	</div>
 
 	<div class="container">
 		<div class="hero-content">
-			<span class="eyebrow">Defense Technology Venture Capital</span>
+			<span class="eyebrow">Defence Technology Venture Capital</span>
 			<h1>Securing the <br/> <span class="text-highlight">Future of Europe</span></h1>
-			<p>Strategic investments in Drones, Cybersecurity, and Space Systems to safeguard our democracies.</p>
+			<p>Strategic investments in defence and dual-use technology scale-ups across the EU and NATO ecosystem.</p>
 			<div class="hero-actions">
 				<a href="/investment-strategies" class="btn">View Strategies</a>
 				<a href="#mission" class="scroll-down">
@@ -44,6 +40,118 @@
 		</div>
 	</div>
 </section>
+
+<script>
+	import * as THREE from 'three';
+
+	function initHero3D() {
+		const container = document.getElementById('three-hero-container');
+		if (!container) return;
+
+		const scene = new THREE.Scene();
+		const camera = new THREE.PerspectiveCamera(45, container.clientWidth / container.clientHeight, 0.1, 1000);
+		camera.position.set(5, 2, 10);
+		camera.lookAt(0, 0, 0);
+
+		const renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true });
+		renderer.setSize(container.clientWidth, container.clientHeight);
+		renderer.setPixelRatio(window.devicePixelRatio);
+		container.appendChild(renderer.domElement);
+
+		const satelliteGroup = new THREE.Group();
+		scene.add(satelliteGroup);
+
+		const lineMaterial = new THREE.LineBasicMaterial({ 
+			color: 0xeeeae1, 
+			transparent: true, 
+			opacity: 0.25 
+		});
+
+		const pointMaterial = new THREE.PointsMaterial({
+			color: 0xeeeae1,
+			size: 0.05,
+			transparent: true,
+			opacity: 0.4
+		});
+
+		// 1. Core Body
+		const bodyGeo = new THREE.BoxGeometry(1, 2, 1);
+		const bodyEdges = new THREE.EdgesGeometry(bodyGeo);
+		const bodyLine = new THREE.LineSegments(bodyEdges, lineMaterial);
+		satelliteGroup.add(bodyLine);
+
+		// 2. Solar Panels
+		const createPanel = (side) => {
+			const panelGroup = new THREE.Group();
+			const panelGeo = new THREE.BoxGeometry(4, 1.5, 0.05);
+			const panelLine = new THREE.LineSegments(new THREE.EdgesGeometry(panelGeo), lineMaterial);
+			panelGroup.add(panelLine);
+
+			for (let i = -1.5; i <= 1.5; i += 0.5) {
+				const gv = new THREE.BoxGeometry(0.01, 1.5, 0.06);
+				const l = new THREE.LineSegments(new THREE.EdgesGeometry(gv), lineMaterial);
+				l.position.x = i;
+				panelGroup.add(l);
+			}
+
+			panelGroup.position.x = side * 3;
+			satelliteGroup.add(panelGroup);
+		};
+		createPanel(1);
+		createPanel(-1);
+
+		// 3. Sensors
+		const dishGeo = new THREE.ConeGeometry(0.5, 0.7, 12, 1, true);
+		const dishLine = new THREE.LineSegments(new THREE.EdgesGeometry(dishGeo), lineMaterial);
+		dishLine.position.y = -1.5;
+		dishLine.rotation.x = Math.PI;
+		satelliteGroup.add(dishLine);
+
+		const points = new THREE.Points(bodyEdges, pointMaterial);
+		satelliteGroup.add(points);
+
+		// 4. Wireframe Earth (Very subtle)
+		const earthGeo = new THREE.SphereGeometry(30, 32, 32);
+		const earthLine = new THREE.LineSegments(new THREE.EdgesGeometry(earthGeo), new THREE.LineBasicMaterial({ color: 0xeeeae1, transparent: true, opacity: 0.03 }));
+		earthLine.position.set(-10, -35, -5);
+		scene.add(earthLine);
+
+		// Interaction
+		let mouseX = 0;
+		let mouseY = 0;
+		window.addEventListener('mousemove', (e) => {
+			mouseX = (e.clientX / window.innerWidth) - 0.5;
+			mouseY = (e.clientY / window.innerHeight) - 0.5;
+		});
+
+		function animate() {
+			requestAnimationFrame(animate);
+			
+			satelliteGroup.rotation.y += 0.002;
+			satelliteGroup.rotation.x += 0.0005;
+
+			// Subtle mouse follow
+			satelliteGroup.position.x += (mouseX * 2 - satelliteGroup.position.x) * 0.05;
+			satelliteGroup.position.y += (-mouseY * 2 - satelliteGroup.position.y) * 0.05;
+			
+			earthLine.rotation.y += 0.0002;
+			
+			renderer.render(scene, camera);
+		}
+
+		window.addEventListener('resize', () => {
+			const width = container.clientWidth;
+			const height = container.clientHeight;
+			renderer.setSize(width, height);
+			camera.aspect = width / height;
+			camera.updateProjectionMatrix();
+		});
+
+		animate();
+	}
+
+	initHero3D();
+</script>
 
 <style>
 	.hero {
@@ -61,6 +169,13 @@
 		z-index: 0;
 	}
 
+	.three-hero-bg {
+		position: absolute;
+		inset: 0;
+		z-index: 1;
+		opacity: 0.8;
+	}
+
 	.grid-overlay {
 		position: absolute;
 		inset: 0;
@@ -69,6 +184,7 @@
 			linear-gradient(90deg, rgba(238, 234, 225, 0.05) 1px, transparent 1px);
 		background-size: 50px 50px;
 		mask-image: radial-gradient(circle at 50% 50%, black, transparent 80%);
+		z-index: 0;
 	}
 
 	.radar {
@@ -78,9 +194,10 @@
 		transform: translate(-50%, -50%);
 		width: 800px;
 		height: 800px;
-		border: 1px solid rgba(238, 234, 225, 0.1);
+		border: 1px solid rgba(238, 234, 225, 0.08);
 		border-radius: 50%;
 		pointer-events: none;
+		z-index: 0;
 	}
 
 	.radar::before {
@@ -88,7 +205,7 @@
 		position: absolute;
 		inset: -1px;
 		border-radius: 50%;
-		background: conic-gradient(from 0deg, transparent 0deg, rgba(238, 234, 225, 0.15) 90deg, transparent 90deg);
+		background: conic-gradient(from 0deg, transparent 0deg, rgba(238, 234, 225, 0.1) 90deg, transparent 90deg);
 		animation: rotate 12s linear infinite;
 	}
 
@@ -97,65 +214,41 @@
 		to { transform: rotate(360deg); }
 	}
 
-	/* Satellite Styling */
-	.satellite-container {
-		position: absolute;
-		top: 15%;
-		right: 10%;
-		color: var(--color-secondary);
-		opacity: 0.3;
-		animation: float 20s ease-in-out infinite;
-		transform: scale(1.15); /* Reduced from 1.5 */
-	}
-
-	.satellite-svg {
-		width: 225px; /* Reduced from 300px */
-		height: 225px;
-		filter: drop-shadow(0 0 10px rgba(238, 234, 225, 0.2));
-	}
-
-	@keyframes float {
-		0%, 100% { transform: translateY(0) rotate(0deg) scale(1.15); }
-		50% { transform: translateY(-30px) rotate(5deg) scale(1.15); }
-	}
-
 	/* Drone Swarm Styling */
 	.drone-swarm {
 		position: absolute;
 		inset: 0;
 		pointer-events: none;
+		z-index: 2;
 	}
 
 	.drone {
 		position: absolute;
-		width: 36px; /* Reduced from 48px */
+		width: 36px;
 		height: 36px;
 		color: rgba(238, 234, 225, 0.1);
 		pointer-events: none;
-		transition: color 0.5s ease;
 	}
 
-	/* Central Body */
 	.drone::before {
 		content: '';
 		position: absolute;
 		top: 50%;
 		left: 50%;
 		transform: translate(-50%, -50%);
-		width: 4.5px; /* Reduced from 6px */
+		width: 4.5px;
 		height: 4.5px;
 		background: currentColor;
 		border-radius: 50%;
 	}
 
-	/* 4 Circular Rotors */
 	.drone::after {
 		content: '';
 		position: absolute;
 		top: 50%;
 		left: 50%;
 		transform: translate(-50%, -50%);
-		width: 7.5px; /* Reduced from 10px */
+		width: 7.5px;
 		height: 7.5px;
 		border: 1px solid currentColor;
 		border-radius: 50%;
@@ -180,18 +273,18 @@
 	@keyframes drift-1 {
 		0% { left: -60px; transform: translateY(0); }
 		50% { transform: translateY(15px); }
-		100% { left: 110%; transform: translateY(0); }
+		100% { left: 110%; }
 	}
 
 	@keyframes drift-2 {
 		0% { right: -60px; transform: translateY(0); }
 		50% { transform: translateY(-15px); }
-		100% { right: 110%; transform: translateY(0); }
+		100% { right: 110%; }
 	}
 
 	.hero-content {
 		position: relative;
-		z-index: 1;
+		z-index: 10;
 		max-width: 800px;
 	}
 
@@ -217,9 +310,10 @@
 
 	p {
 		font-size: 1.25rem;
-		max-width: 500px;
+		max-width: 550px;
 		margin-bottom: 3rem;
 		opacity: 0.8;
+		line-height: 1.5;
 	}
 
 	.hero-actions {
@@ -237,6 +331,12 @@
 		text-transform: uppercase;
 		letter-spacing: 0.1em;
 		font-size: 0.85rem;
+	}
+
+	.btn-outline {
+		background-color: transparent;
+		color: var(--color-secondary);
+		border: 1px solid var(--color-secondary);
 	}
 
 	.scroll-down {
@@ -264,11 +364,6 @@
 			flex-direction: column;
 			align-items: flex-start;
 			gap: 2rem;
-		}
-		.satellite-container {
-			top: 5%;
-			right: 5%;
-			transform: scale(0.6);
 		}
 	}
 </style>

@@ -12,14 +12,13 @@ import WhyArtemis from '../components/WhyArtemis.astro';
 		<div class="container">
 			<div class="grid grid-cols-2">
 				<div>
-					<span class="mission-eyebrow">A GP-Led Defence Investment Platform</span>
-					<h2>Luxembourg-based Private Equity</h2>
+					<span class="mission-eyebrow">A GP-Led Pledge Investment Platform</span>
+					<h2>European Defence Private Equity</h2>
 				</div>
 				<div>
 					<p class="lead">Artemis Capital Partners invests in established, scaling and transitioning defence companies with disciplined capital, active ownership, and long-term value creation. We target mid-market companies across the EU and NATO ecosystem positioned to benefit from the structural rearmament of Europe.</p>
 					<div class="platform-links">
-						<a href="/platform" class="platform-link">Platform</a>
-						<a href="/investment-strategies" class="platform-link">Investment Focus</a>
+<a href="/investment-strategies" class="platform-link">Investment Strategy</a>
 						<a href="/approach" class="platform-link">Approach</a>
 					</div>
 				</div>
@@ -30,42 +29,6 @@ import WhyArtemis from '../components/WhyArtemis.astro';
 	<FeatureShowcase />
 	
 	<WhyArtemis />
-
-	<section class="thesis">
-		<div class="container">
-			<div class="section-header text-center">
-				<span class="eyebrow">Investment Thesis</span>
-				<h2>Structural Drivers of <span class="outline">Defence</span></h2>
-				<p class="section-subtitle">Artemis invests in European defence and dual-use technology companies positioned to benefit from the structural rearmament of Europe and the rapid expansion of defence industrial capacity.</p>
-			</div>
-			<div class="grid grid-cols-4 thesis-grid">
-				<div class="thesis-card">
-					<div class="card-glow"></div>
-					<span class="card-num">01</span>
-					<h4>Structural Growth in Defence Spending</h4>
-					<p>European defence budgets are increasing rapidly as NATO commitments rise and nations prioritize national security infrastructure.</p>
-				</div>
-				<div class="thesis-card">
-					<div class="card-glow"></div>
-					<span class="card-num">02</span>
-					<h4>Technology Transformation of Warfare</h4>
-					<p>Modern defence increasingly relies on electronic warfare, satellites, AI, and autonomous systems, necessitating rapid technological deployment.</p>
-				</div>
-				<div class="thesis-card">
-					<div class="card-glow"></div>
-					<span class="card-num">03</span>
-					<h4>European Strategic Autonomy</h4>
-					<p>EU and NATO are prioritizing domestic defence capabilities and resilient supply chains to ensure long-term technological sovereignty.</p>
-				</div>
-				<div class="thesis-card">
-					<div class="card-glow"></div>
-					<span class="card-num">04</span>
-					<h4>Industrial Capacity Gap</h4>
-					<p>European supply chains must scale quickly to support modern defence systems, creating significant opportunities for industrial expansion.</p>
-				</div>
-			</div>
-		</div>
-	</section>
 
 	<section class="partners">
 		<div class="container text-center">
@@ -80,7 +43,6 @@ import WhyArtemis from '../components/WhyArtemis.astro';
 
 	<section class="cta">
 		<div class="container text-center">
-			<h2>Strategic Investment in NATO Security</h2>
 			<p>Connect with our team to learn more about our platform and investment opportunities.</p>
 			<div class="cta-btns">
 				<a href="/investment-strategies" class="btn">Our Strategies</a>
@@ -136,92 +98,6 @@ import WhyArtemis from '../components/WhyArtemis.astro';
 	.mission {
 		background-color: var(--color-secondary);
 		color: var(--color-primary);
-	}
-
-	.thesis {
-		padding: 6rem 0 4rem;
-		background: radial-gradient(circle at 50% 50%, rgba(238, 234, 225, 0.03) 0%, transparent 70%);
-	}
-
-	.section-header { margin-bottom: 6rem; }
-	
-	.eyebrow { 
-		display: block; 
-		text-transform: uppercase; 
-		letter-spacing: 0.25em; 
-		font-size: 0.8rem; 
-		margin-bottom: 1.5rem; 
-		opacity: 0.5;
-	}
-
-	.section-subtitle {
-		max-width: 700px;
-		margin: 2rem auto 0;
-		font-size: 1.1rem;
-		opacity: 0.6;
-		line-height: 1.6;
-	}
-
-	.thesis-grid { gap: 1.5rem; }
-
-	.thesis-card {
-		position: relative;
-		padding: 3rem 2rem;
-		background: rgba(24, 33, 50, 0.4);
-		border: 1px solid rgba(238, 234, 225, 0.05);
-		transition: all 0.4s ease;
-		overflow: hidden;
-	}
-
-	.thesis-card:hover {
-		border-color: rgba(238, 234, 225, 0.2);
-		transform: translateY(-5px);
-		background: rgba(24, 33, 50, 0.6);
-	}
-
-	.card-glow {
-		position: absolute;
-		top: 0;
-		right: 0;
-		width: 100px;
-		height: 100px;
-		background: radial-gradient(circle at top right, rgba(238, 234, 225, 0.05), transparent 70%);
-		opacity: 0;
-		transition: opacity 0.4s ease;
-	}
-
-	.thesis-card:hover .card-glow { opacity: 1; }
-
-	.card-num {
-		font-family: monospace;
-		font-size: 0.8rem;
-		color: var(--color-secondary);
-		opacity: 0.2;
-		display: block;
-		margin-bottom: 2rem;
-	}
-
-	.thesis-card h4 {
-		margin-bottom: 1.5rem;
-		color: var(--color-secondary);
-		font-size: 1rem;
-		line-height: 1.4;
-		min-height: 3rem;
-	}
-
-	.thesis-card p {
-		font-size: 0.9rem;
-		opacity: 0.5;
-		line-height: 1.6;
-	}
-
-	@media (max-width: 1024px) {
-		.grid-cols-4 { grid-template-columns: repeat(2, 1fr); }
-	}
-
-	@media (max-width: 640px) {
-		.grid-cols-4 { grid-template-columns: 1fr; }
-		.thesis { padding: 8rem 0; }
 	}
 
 	.text-center {

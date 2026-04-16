@@ -11,6 +11,42 @@ import Layout from '../layouts/Layout.astro';
 		</div>
 	</section>
 
+	<section class="thesis">
+		<div class="container">
+			<div class="section-header text-center">
+				<span class="eyebrow">Investment Thesis</span>
+				<h2>Structural Drivers of <span class="outline">Defence</span></h2>
+				<p class="section-subtitle">Artemis invests in European defence and dual-use technology companies positioned to benefit from the structural rearmament of Europe and the rapid expansion of defence industrial capacity.</p>
+			</div>
+			<div class="grid grid-cols-4 thesis-grid">
+				<div class="thesis-card">
+					<div class="card-glow"></div>
+					<span class="card-num">01</span>
+					<h4>Structural Growth in Defence Spending</h4>
+					<p>European defence budgets are increasing rapidly as NATO commitments rise and nations prioritize national security infrastructure.</p>
+				</div>
+				<div class="thesis-card">
+					<div class="card-glow"></div>
+					<span class="card-num">02</span>
+					<h4>Technology Transformation of Warfare</h4>
+					<p>Modern defence increasingly relies on electronic warfare, satellites, AI, and autonomous systems, necessitating rapid technological deployment.</p>
+				</div>
+				<div class="thesis-card">
+					<div class="card-glow"></div>
+					<span class="card-num">03</span>
+					<h4>European Strategic Autonomy</h4>
+					<p>EU and NATO are prioritizing domestic defence capabilities and resilient supply chains to ensure long-term technological sovereignty.</p>
+				</div>
+				<div class="thesis-card">
+					<div class="card-glow"></div>
+					<span class="card-num">04</span>
+					<h4>Industrial Capacity Gap</h4>
+					<p>European supply chains must scale quickly to support modern defence systems, creating significant opportunities for industrial expansion.</p>
+				</div>
+			</div>
+		</div>
+	</section>
+
 	<section class="criteria">
 		<div class="container">
 			<div class="section-header">
@@ -62,13 +98,27 @@ import Layout from '../layouts/Layout.astro';
 				</div>
 				<div class="sectors">
 					<h2>Sector Focus</h2>
-					<p>Defense and dual-use technologies with specific focus on:</p>
 					<ul class="sector-list">
-						<li>Electronic Warfare</li>
-						<li>Satellite Communications & Space Systems</li>
-						<li>Cybersecurity</li>
-						<li>UAV Technologies</li>
-						<li>Smart-weapon Subsystems</li>
+						<li>
+							<span class="sector-num">01</span>
+							<span class="sector-title">Defence Components</span>
+							<span class="sector-sub">Critical Enablers & Supply Chain</span>
+						</li>
+						<li>
+							<span class="sector-num">02</span>
+							<span class="sector-title">Modern Warfare Systems</span>
+							<span class="sector-sub">C4ISR, UAS & Autonomous Platforms</span>
+						</li>
+						<li>
+							<span class="sector-num">03</span>
+							<span class="sector-title">Cyber Security</span>
+							<span class="sector-sub">Offensive & Defensive Capabilities</span>
+						</li>
+						<li>
+							<span class="sector-num">04</span>
+							<span class="sector-title">Space & Satcom</span>
+							<span class="sector-sub">Space Situational Awareness</span>
+						</li>
 					</ul>
 				</div>
 			</div>
@@ -192,9 +242,87 @@ import Layout from '../layouts/Layout.astro';
 	.param-item .value { font-size: 1.25rem; font-weight: 600; }
 
 	.sector-list { list-style: none; padding: 0; }
-	.sector-list li { padding: 1rem 0; border-bottom: 1px solid rgba(238, 234, 225, 0.1); font-weight: 500; }
+	.sector-list li { display: flex; align-items: baseline; gap: 1rem; padding: 1.25rem 0; border-bottom: 1px solid rgba(238, 234, 225, 0.1); flex-wrap: wrap; }
+	.sector-num { font-family: monospace; font-size: 0.75rem; color: var(--color-secondary); opacity: 0.3; flex-shrink: 0; }
+	.sector-title { font-weight: 600; font-size: 0.95rem; flex-shrink: 0; }
+	.sector-sub { font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.1em; opacity: 0.45; }
 
-	.process { 
+	.thesis {
+		padding: 6rem 0 4rem;
+		background: radial-gradient(circle at 50% 50%, rgba(238, 234, 225, 0.03) 0%, transparent 70%);
+	}
+
+	.thesis-grid { gap: 1.5rem; }
+
+	.thesis-card {
+		position: relative;
+		padding: 3rem 2rem;
+		background: rgba(24, 33, 50, 0.4);
+		border: 1px solid rgba(238, 234, 225, 0.05);
+		transition: all 0.4s ease;
+		overflow: hidden;
+	}
+
+	.thesis-card:hover {
+		border-color: rgba(238, 234, 225, 0.2);
+		transform: translateY(-5px);
+		background: rgba(24, 33, 50, 0.6);
+	}
+
+	.card-glow {
+		position: absolute;
+		top: 0;
+		right: 0;
+		width: 100px;
+		height: 100px;
+		background: radial-gradient(circle at top right, rgba(238, 234, 225, 0.05), transparent 70%);
+		opacity: 0;
+		transition: opacity 0.4s ease;
+	}
+
+	.thesis-card:hover .card-glow { opacity: 1; }
+
+	.card-num {
+		font-family: monospace;
+		font-size: 0.8rem;
+		color: var(--color-secondary);
+		opacity: 0.2;
+		display: block;
+		margin-bottom: 2rem;
+	}
+
+	.thesis-card h4 {
+		margin-bottom: 1.5rem;
+		color: var(--color-secondary);
+		font-size: 1rem;
+		line-height: 1.4;
+		min-height: 3rem;
+	}
+
+	.thesis-card p {
+		font-size: 0.9rem;
+		opacity: 0.5;
+		line-height: 1.6;
+	}
+
+	.section-subtitle {
+		max-width: 700px;
+		margin: 2rem auto 0;
+		font-size: 1.1rem;
+		opacity: 0.6;
+		line-height: 1.6;
+	}
+
+	@media (max-width: 1024px) {
+		.grid-cols-4 { grid-template-columns: repeat(2, 1fr); }
+	}
+
+	@media (max-width: 640px) {
+		.grid-cols-4 { grid-template-columns: 1fr; }
+		.thesis { padding: 8rem 0; }
+	}
+
+	.process {
 		padding: 10rem 0; 
 		background: #0d121c; 
 		background-image: 

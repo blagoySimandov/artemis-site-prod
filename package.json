@@ -15,6 +15,7 @@
     "@resvg/resvg-js": "^2.6.2",
     "@types/three": "^0.183.1",
     "astro": "^6.1.6",
+    "netlify-identity-widget": "^2.0.3",
     "satori": "^0.26.0",
     "three": "^0.183.2"
   }

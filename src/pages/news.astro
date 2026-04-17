@@ -1,21 +1,90 @@
 ---
+import { getCollection } from 'astro:content';
 import Layout from '../layouts/Layout.astro';
+
+const posts = (await getCollection('news')).sort(
+  (a, b) => b.data.date.valueOf() - a.data.date.valueOf()
+);
 ---
 
-<Layout title="Coming Soon">
-	<section class="page-header">
-		<div class="container">
-			<h1>Coming Soon</h1>
-			<p>We are currently updating our digital platform with the latest strategic information.</p>
-		</div>
-	</section>
+<Layout title="News">
+  <section class="page-header">
+    <div class="container">
+      <h1>News</h1>
+    </div>
+  </section>
+
+  <section class="news-list">
+    <div class="container">
+      {posts.length === 0 ? (
+        <p class="empty">No news yet. Check back soon.</p>
+      ) : (
+        <ul>
+          {posts.map((post) => (
+            <li>
+              <a href={`/news/${post.id}`}>
+                <time datetime={post.data.date.toISOString()}>
+                  {post.data.date.toLocaleDateString('en-GB', { year: 'numeric', month: 'long', day: 'numeric' })}
+                </time>
+                <h2>{post.data.title}</h2>
+                <p>{post.data.description}</p>
+              </a>
+            </li>
+          ))}
+        </ul>
+      )}
+    </div>
+  </section>
 </Layout>
 
 <style>
-	.page-header {
-		padding: 15rem 0;
-		text-align: center;
-	}
-	h1 { font-size: 3.5rem; margin-bottom: 1.5rem; }
-	p { opacity: 0.6; font-size: 1.25rem; }
+  .page-header {
+    padding: 12rem 0 4rem;
+  }
+
+  .news-list ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+  }
+
+  .news-list li {
+    border-top: 1px solid rgba(238, 234, 225, 0.15);
+  }
+
+  .news-list li:last-child {
+    border-bottom: 1px solid rgba(238, 234, 225, 0.15);
+  }
+
+  .news-list a {
+    display: block;
+    padding: 2.5rem 0;
+  }
+
+  time {
+    display: block;
+    font-size: 0.8rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    opacity: 0.5;
+    margin-bottom: 0.75rem;
+  }
+
+  h2 {
+    font-size: clamp(1.1rem, 2vw, 1.4rem);
+    margin-bottom: 0.75rem;
+  }
+
+  p {
+    opacity: 0.6;
+    max-width: 60ch;
+    margin: 0;
+  }
+
+  .empty {
+    opacity: 0.5;
+  }
 </style>
